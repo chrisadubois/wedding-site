@@ -45,11 +45,12 @@ jobs:
       run: |
           npm install -g yarn
           yarn install
+    - name: Build App
+      run: yarn build
     - name: Cypress run
       uses: cypress-io/github-action@v2
       with:
-        start: yarn start
-        wait-on: 'http://localhost:3000'
+        command: yarn e2e
 
 
 
