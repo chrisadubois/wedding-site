@@ -1,3 +1,3 @@
 module.exports = {
-    "src/**/*.js": ["yarn lint", "yarn test:related"],
+    "*.(ts|tsx|js|jsx)": ["yarn lint", "yarn test:related"],
 };
