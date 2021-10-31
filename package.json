@@ -49,7 +49,7 @@
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
-      "yarn lint"
+      "eslint --fix"
     ]
   }
 }
