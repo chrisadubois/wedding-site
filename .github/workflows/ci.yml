@@ -53,7 +53,7 @@ jobs:
     - name: Cypress run
       uses: cypress-io/github-action@v2
       with:
-        command: yarn e2e:headless
+        command: yarn e2e:headless:record
         record: true
       env: 
         CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
