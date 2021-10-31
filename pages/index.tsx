@@ -20,7 +20,7 @@ const Home: NextPage = () => {
         </h1>
 
         <p className={styles.description}>
-        <Button variant="contained">Test Foo</Button>
+        <Button variant="contained">Lorem Ipsum</Button>
           Get started by editing{' '}
           <code className={styles.code}>pages/index.tsx</code>
         </p>
