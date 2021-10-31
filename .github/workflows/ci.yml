@@ -4,6 +4,7 @@ jobs:
 
   lint:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
@@ -19,6 +20,7 @@ jobs:
   
   jest:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
@@ -34,6 +36,7 @@ jobs:
 
   e2e:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -50,7 +53,7 @@ jobs:
     - name: Cypress run
       uses: cypress-io/github-action@v2
       with:
-        command: yarn e2e
+        command: yarn e2e:headless
 
 
 
