@@ -54,6 +54,9 @@ jobs:
       uses: cypress-io/github-action@v2
       with:
         command: yarn e2e:headless
+        record: true
+      env: 
+        CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 
 
 
