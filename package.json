@@ -40,16 +40,17 @@
     "cypress": "^8.7.0",
     "eslint": "7",
     "eslint-config-next": "12.0.1",
+    "eslint-config-prettier": "^8.3.0",
     "husky": "^7.0.4",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.3.1",
     "jest-dom": "^4.0.0",
-    "lint-staged": "^11.2.6",
+    "lint-staged": ">=10",
+    "prettier": "2.4.1",
     "typescript": "4.4.4"
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx}": [
-      "eslint --fix"
-    ]
+    "*.{js,ts,tsx}": "eslint --cache --fix",
+    "*.{js,css,md}": "prettier --write"
   }
 }
