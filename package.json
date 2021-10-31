@@ -48,18 +48,12 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "yarn test:related",
-      "pre-commit": "lint-staged -v"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
-    "{gauge,src}/{*.*(js|jsx|ts|tsx),!(static)/**/*.*(js|jsx|ts|tsx)}": [
-      "prettier --write",
-      "eslint --fix"
-    ],
-    "src/**/!(static)/**/*.scss": [
-      "prettier --write",
-      "stylelint --fix"
+    "*.{js,jsx}": [
+      "eslint '*/**/*.{js,jsx,ts,tsx}' --fix"
     ]
   }
 }
