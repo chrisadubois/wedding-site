@@ -1,12 +1,16 @@
 name: Cypress Tests
 on: [pull_request, push]
 jobs:
-    jest:
+  jest:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Install modules
-      run: yarn
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+    - name: Install Yarn
+      run: npm install -g yarn
+    - uses: bahmutov/npm-install@v1.7.10
     - name: Run tests
       run: yarn jest:ci
 
