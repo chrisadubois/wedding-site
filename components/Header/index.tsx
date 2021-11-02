@@ -27,13 +27,7 @@ const Header = () => {
           <Toolbar>
             <Container maxWidth="lg" sx={{display: `flex`, justifyContent: `space-between`}}>
               <IconButton edge="start" aria-label="home">
-                <StyledLink
-                  activeClassName="active"
-                  href={{
-                    // TODO: typescript styled link source
-                    pathname: '/',
-                  }}
-                >
+                <StyledLink href="/">
                   <Home
                     sx={{
                       color: (theme: Theme) => theme.palette.common.white,

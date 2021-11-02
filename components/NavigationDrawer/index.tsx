@@ -41,9 +41,7 @@ const NavigationDrawer: NextPage<NavigationProps> = ({navLinks}: NavigationProps
                 textTransform: `uppercase`,
               }}
             >
-              <StyledLink sx={{color: 'common.white'}} href={path}>
-                {title}
-              </StyledLink>
+              <StyledLink href={path}>{title}</StyledLink>
             </Typography>
           ))}
         </Stack>

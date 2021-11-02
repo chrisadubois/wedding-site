@@ -9,24 +9,14 @@ const Footer = () => {
   return (
     <Box component="footer" sx={{py: 1, bgcolor: 'secondary.main'}}>
       <Stack direction="row" justifyContent="center" spacing={4}>
-        <StyledLink
-          sx={{textDecoration: 'none', color: 'primary.main'}}
-          href="/info"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <StyledLink href="/info" target="_blank" rel="noopener noreferrer">
           <Tooltip title="About this Site">
             <IconButton>
               <Info fontSize="large" />
             </IconButton>
           </Tooltip>
         </StyledLink>
-        <StyledLink
-          sx={{textDecoration: 'none', color: 'primary.main'}}
-          href="https://www.instagram.com/saracrauer/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <StyledLink href="https://www.instagram.com/saracrauer/" target="_blank" rel="noopener noreferrer">
           <Tooltip title="Sara's Instagram">
             <IconButton>
               <Instagram fontSize="large" />

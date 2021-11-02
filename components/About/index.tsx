@@ -16,7 +16,7 @@ const SectionAbout = () => {
           <Typography textAlign="center" sx={{mb: 5}}>
             {`Sara and Penny and Chris live in Black Diamond. We love you all !`}
           </Typography>
-          <StyledLink href="/rsvp" underline="none">
+          <StyledLink href="/rsvp">
             <Button variant="outlined" size="large">
               RSVP
             </Button>

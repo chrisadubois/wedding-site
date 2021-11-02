@@ -17,8 +17,6 @@ const Navbar: NextPage<NavigationProps> = ({navLinks}: NavigationProps) => {
           <StyledLink // TODO: typescript source for StyledLink
             key={`${title}${i}`}
             href={path}
-            variant="button"
-            sx={{color: `white`, opacity: 0.7}}
           >
             {title}
           </StyledLink>

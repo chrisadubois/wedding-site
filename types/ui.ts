@@ -15,5 +15,5 @@ export interface NavigationProps {
 export interface HeroProps {
   image: ImageProps;
   title?: string;
-  subtitle?: string;
+  subtitle?: string | ReactElement;
 }
