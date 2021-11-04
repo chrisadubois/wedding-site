@@ -4,9 +4,9 @@ import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/icons-material/Menu';
 import StyledLink from '../StyledLink';
-import {MouseEventHandler, useState} from 'react';
-import {NavigationProps} from '../../types/ui';
+import {useState} from 'react';
 import {NextPage} from 'next';
+import {NavigationProps} from '../../types/ui';
 import {Divider, Stack} from '@mui/material';
 
 const NavigationDrawer: NextPage<NavigationProps> = ({navLinks}: NavigationProps) => {
@@ -15,7 +15,7 @@ const NavigationDrawer: NextPage<NavigationProps> = ({navLinks}: NavigationProps
   });
 
   const toggleDrawer = (anchor: string, open: boolean) => (event: any) => {
-    if (event?.type === 'keydown' && (event?.key === 'Tab' || event?.key === 'Shift')) {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
 
@@ -41,7 +41,9 @@ const NavigationDrawer: NextPage<NavigationProps> = ({navLinks}: NavigationProps
                 textTransform: `uppercase`,
               }}
             >
-              <StyledLink href={path}>{title}</StyledLink>
+              <StyledLink sx={{color: 'common.white'}} href={path}>
+                {title}
+              </StyledLink>
             </Typography>
           ))}
         </Stack>
