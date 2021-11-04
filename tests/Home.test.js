@@ -1,11 +1,9 @@
-import { render, screen } from "@testing-library/react";
-import Home from "../pages/index";
+import {render, screen} from '@testing-library/react';
+import Home from '../pages/index';
 
-describe("Home", () => {
-  it("renders without crashing", () => {
+describe('Home', () => {
+  it('renders without crashing', () => {
     render(<Home />);
-    expect(
-      screen.getByRole("heading", { name: "Welcome to Next.js!" })
-    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', {name: 'DuBois & Crauer Wedding'})).toBeInTheDocument();
   });
 });
