@@ -1,11 +1,9 @@
-import type {NextPage} from 'next';
 import Hero from '../components/Hero';
 import Countdown, {CountdownRenderProps} from 'react-countdown';
 import {ReactElement} from 'react';
 import About from '../components/About';
 import Images from '../components/Images';
 import {cms} from '../common/cms';
-import {HeroImage} from '../types/cms';
 import {HomeProps} from '../types/ui';
 
 export async function getStaticProps() {
