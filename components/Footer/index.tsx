@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <Box component="footer" sx={{py: 1, bgcolor: 'secondary.main'}}>
       <Stack direction="row" justifyContent="center" spacing={4}>
-        <StyledLink href="/info" target="_blank" rel="noopener noreferrer">
+        <StyledLink href="/info" rel="noopener noreferrer">
           <Tooltip title="About this Site">
             <IconButton>
               <Info fontSize="large" />

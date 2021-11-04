@@ -8,7 +8,7 @@ let theme = createTheme({
     secondary: blueGrey,
   },
   typography: {
-    fontFamily: ['Playfair-Display'].join(','),
+    fontFamily: ['Alice'].join(','),
   },
 });
 
