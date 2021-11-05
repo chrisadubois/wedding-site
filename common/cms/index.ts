@@ -10,6 +10,17 @@ console.log(
   process.env.CONTENTFUL_ACCESS_TOKEN,
   process.env.CONTENTFUL_SPACE_ID
 );
+
+console.log(
+  'theobjectPassed',
+  JSON.stringify({
+    space: process.env.CONTENTFUL_SPACE_ID as string,
+    accessToken: (process.env.VERCEL_ENV === 'preview'
+      ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN
+      : process.env.CONTENTFUL_ACCESS_TOKEN) as string,
+    host: process.env.VERCEL_ENV === 'preview' ? 'preview.contentful.com' : 'cdn.contentful.com',
+  })
+);
 export class cms implements ICMS {
   private client = createClient({
     space: process.env.CONTENTFUL_SPACE_ID as string,
