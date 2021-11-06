@@ -31,7 +31,7 @@ const NavigationDrawer: NextPage<NavigationProps> = ({navLinks}: NavigationProps
     >
       {
         <Stack direction="column" divider={<Divider orientation="horizontal" flexItem />}>
-          {navLinks.map(({title, path}, i) => (
+          {navLinks.map(({title, path, external}, i) => (
             <Typography
               variant="button"
               key={`${title}${i}`}
@@ -41,7 +41,12 @@ const NavigationDrawer: NextPage<NavigationProps> = ({navLinks}: NavigationProps
                 textTransform: `uppercase`,
               }}
             >
-              <StyledLink sx={{color: 'common.white'}} href={path}>
+              <StyledLink
+                sx={{color: 'common.white'}}
+                href={path}
+                target={external ? '_blank' : '_self'}
+                rel="noopener noreferrer"
+              >
                 {title}
               </StyledLink>
             </Typography>

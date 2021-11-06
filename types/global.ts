@@ -7,4 +7,5 @@ export interface ThemeContainer {
 export type NavRoute = {
   title: string;
   path: string;
+  external?: boolean;
 };

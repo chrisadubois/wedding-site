@@ -43,8 +43,15 @@ const NavigationBar: NextPage<NavigationProps> = ({navLinks}: NavigationProps) =
       }}
     >
       <Stack direction="row" spacing={4}>
-        {navLinks.map(({title, path}, i) => (
-          <StyledLink key={`${title}${i}`} href={path} variant="button" sx={{color: `white`, opacity: 0.7}}>
+        {navLinks.map(({title, path, external}, i) => (
+          <StyledLink
+            key={`${title}${i}`}
+            href={path}
+            target={external ? '_blank' : '_self'}
+            rel="noopener noreferrer"
+            variant="button"
+            sx={{color: `white`, opacity: 0.7}}
+          >
             {title}
           </StyledLink>
         ))}
