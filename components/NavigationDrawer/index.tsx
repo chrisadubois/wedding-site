@@ -6,6 +6,7 @@ import Menu from '@mui/icons-material/Menu';
 import StyledLink from '../StyledLink';
 import {useState} from 'react';
 import {NextPage} from 'next';
+import {useRouter} from 'next/router';
 import {NavigationProps} from '../../types/ui';
 import {Divider, Stack} from '@mui/material';
 
@@ -13,6 +14,7 @@ const NavigationDrawer: NextPage<NavigationProps> = ({navLinks}: NavigationProps
   const [state, setState] = useState({
     right: false,
   });
+  const router = useRouter();
 
   const toggleDrawer = (anchor: string, open: boolean) => (event: any) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -42,10 +44,12 @@ const NavigationDrawer: NextPage<NavigationProps> = ({navLinks}: NavigationProps
               }}
             >
               <StyledLink
-                sx={{color: 'common.white'}}
+                key={`${title}${i}`}
                 href={path}
                 target={external ? '_blank' : '_self'}
                 rel="noopener noreferrer"
+                variant="button"
+                sx={{color: `white`, opacity: 0.7, textDecoration: router.pathname === path ? 'underline' : 'none'}}
               >
                 {title}
               </StyledLink>
