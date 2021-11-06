@@ -5,7 +5,7 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import {useTheme} from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import {Container} from '@mui/material';
+import {Container, ImageListItemBar} from '@mui/material';
 
 export default function Images() {
   const theme = useTheme();
@@ -30,15 +30,7 @@ export default function Images() {
           height: '100%',
         }}
       >
-        <ImageList
-          variant="quilted"
-          cols={columns}
-          gap={5}
-          sx={{
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
+        <ImageList sx={{width: '100%', height: '100%'}} variant="masonry" cols={columns} gap={8}>
           {itemData.map((item) => (
             <ImageListItem key={item.img}>
               <img
@@ -47,18 +39,15 @@ export default function Images() {
                 alt={item.title}
                 loading="lazy"
               />
-              {/* <ImageListItemBar
+              <ImageListItemBar
+                sx={{
+                  background:
+                    'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' + 'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+                  display: 'none',
+                }}
                 title={item.title}
-                actionIcon={
-                  <IconButton
-                    sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-                    aria-label={`info about ${item.title}`}
-                  >
-                    <InfoIcon />
-                  </IconButton>
-                }
-                sx={{ display: `none`, '&&:hover': {display: `contents`}}}
-              /> */}
+                position="top"
+              />
             </ImageListItem>
           ))}
         </ImageList>

@@ -33,8 +33,11 @@ import Toolbar from '@mui/material/Toolbar';
 import {NextPage} from 'next';
 import {NavigationProps} from '../../types/ui';
 import StyledLink from '../StyledLink';
+import {useRouter} from 'next/router';
 
 const NavigationBar: NextPage<NavigationProps> = ({navLinks}: NavigationProps) => {
+  const router = useRouter();
+
   return (
     <Toolbar
       component="nav"
@@ -50,7 +53,7 @@ const NavigationBar: NextPage<NavigationProps> = ({navLinks}: NavigationProps) =
             target={external ? '_blank' : '_self'}
             rel="noopener noreferrer"
             variant="button"
-            sx={{color: `white`, opacity: 0.7}}
+            sx={{color: `white`, opacity: 0.7, textDecoration: router.pathname === path ? 'underline' : 'none'}}
           >
             {title}
           </StyledLink>
