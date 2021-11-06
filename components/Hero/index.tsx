@@ -18,7 +18,7 @@ const Hero: NextPage<HeroProps> = ({image, title, subtitle}: HeroProps) => {
         zIndex: -100,
       }}
     >
-      <Image src={image.src} alt={image.alt} layout="fill" object-fit="cover" quality={80} priority />
+      <Image src={image.src} alt={image.alt} layout="fill" object-fit="cover" quality={95} priority />
       <Grid
         container
         sx={{

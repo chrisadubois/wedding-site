@@ -5,7 +5,8 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import {useTheme} from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import {Container} from '@mui/material';
+import {Container, ImageListItemBar} from '@mui/material';
+import ImageItem from '../Image';
 
 export default function Images() {
   const theme = useTheme();
@@ -30,36 +31,9 @@ export default function Images() {
           height: '100%',
         }}
       >
-        <ImageList
-          variant="quilted"
-          cols={columns}
-          gap={5}
-          sx={{
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
+        <ImageList sx={{width: '100%', height: '100%'}} variant="masonry" cols={columns} gap={8}>
           {itemData.map((item) => (
-            <ImageListItem key={item.img}>
-              <img
-                src={`${item.img}?w=248&fit=crop&auto=format`}
-                srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                alt={item.title}
-                loading="lazy"
-              />
-              {/* <ImageListItemBar
-                title={item.title}
-                actionIcon={
-                  <IconButton
-                    sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-                    aria-label={`info about ${item.title}`}
-                  >
-                    <InfoIcon />
-                  </IconButton>
-                }
-                sx={{ display: `none`, '&&:hover': {display: `contents`}}}
-              /> */}
-            </ImageListItem>
+            <ImageItem key={item.img} item={item} />
           ))}
         </ImageList>
       </Box>

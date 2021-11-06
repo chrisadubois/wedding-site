@@ -16,7 +16,11 @@ const SectionAbout = () => {
           <Typography textAlign="center" sx={{mb: 5}}>
             {`Sara and Penny and Chris live in Black Diamond. We love you all !`}
           </Typography>
-          <StyledLink href="/rsvp">
+          <StyledLink
+            href="https://www.eventbrite.com/e/dubois-crauer-wedding-tickets-206185224557?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=listing&utm-source=cp&aff=escb"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
             <Button variant="outlined" size="large">
               RSVP
             </Button>

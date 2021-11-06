@@ -30,6 +30,7 @@
     "@emotion/styled": "^11.3.0",
     "@mui/icons-material": "^5.0.5",
     "@mui/material": "^5.0.6",
+    "@react-google-maps/api": "^2.5.0",
     "clsx": "^1.1.1",
     "contentful": "^9.1.4",
     "contentful-management": "^7.45.0",
