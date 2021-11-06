@@ -6,6 +6,7 @@ import ImageListItem from '@mui/material/ImageListItem';
 import {useTheme} from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import {Container, ImageListItemBar} from '@mui/material';
+import ImageItem from '../Image';
 
 export default function Images() {
   const theme = useTheme();
@@ -32,23 +33,7 @@ export default function Images() {
       >
         <ImageList sx={{width: '100%', height: '100%'}} variant="masonry" cols={columns} gap={8}>
           {itemData.map((item) => (
-            <ImageListItem key={item.img}>
-              <img
-                src={`${item.img}?w=248&fit=crop&auto=format`}
-                srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                alt={item.title}
-                loading="lazy"
-              />
-              <ImageListItemBar
-                sx={{
-                  background:
-                    'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' + 'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-                  display: 'none',
-                }}
-                title={item.title}
-                position="top"
-              />
-            </ImageListItem>
+            <ImageItem key={item.img} item={item} />
           ))}
         </ImageList>
       </Box>
