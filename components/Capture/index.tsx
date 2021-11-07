@@ -6,20 +6,7 @@ import {usePrevious} from '../../hooks/usePrevious';
 import {AppContext} from '../../context';
 import {Status, Types} from '../../context/reducers';
 import styles from '../../styles/modules/capture.module.scss';
-
-const dataURLtoFile = (dataUrl: string = '', filename: string = '') => {
-  let arr = dataUrl.split(','),
-    mime = arr[0].match(/:(.*?);/)[1],
-    bstr = Buffer.from(arr[1], 'base64');
-  let n = bstr.length,
-    u8arr = new Uint8Array(n);
-
-  while (n--) {
-    u8arr[n] = bstr.at(n);
-  }
-
-  return new File([u8arr], filename, {type: mime});
-};
+import {dataURLtoFile} from '../../common/util';
 
 const WebcamCapture = ({apiKey, spaceId}: {apiKey: string; spaceId: string}) => {
   const cmsClient = useMemo(() => new mgmt(apiKey, spaceId), [apiKey, spaceId]);
@@ -117,7 +104,7 @@ const WebcamCapture = ({apiKey, spaceId}: {apiKey: string; spaceId: string}) => 
         </Grid>
         <Grid item xs={12} sm={12} md={6} maxWidth="md">
           <Box sx={{mt: 2, ml: 2, mr: 2}}>
-            {state.social.imageUploadStatus === Status.Success ? (
+            {state.social.imageUploadStatus === Status.Success && imgSrc ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img className={`${styles.camera}`} src={imgSrc} alt="self" />
             ) : (

@@ -1,16 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import {useContext, useEffect, useState, useRef} from 'react';
-import {
-  Button,
-  Container,
-  Grid,
-  ImageList,
-  ImageListItem,
-  listItemSecondaryActionClasses,
-  Pagination,
-  Stack,
-  useMediaQuery,
-} from '@mui/material';
+import {Button, Container, Grid, ImageList, ImageListItem, Pagination, Stack, useMediaQuery} from '@mui/material';
 import {Box} from '@mui/system';
 import {cms} from '../common/cms';
 import {getSerializableEnvironment, SerializableEnvironment} from '../common/env';
@@ -21,7 +11,6 @@ import {AppContext} from '../context';
 import {Status} from '../context/reducers';
 import {usePrevious} from '../hooks/usePrevious';
 import {useTheme} from '@mui/material/styles';
-import smoothscroll from 'smoothscroll-polyfill';
 
 export async function getStaticProps() {
   const environmentVariables = getSerializableEnvironment(process.env);
@@ -41,16 +30,11 @@ const Social = ({environmentVariables}: {environmentVariables: SerializableEnvir
   const [canQuery, setCanQuery] = useState<boolean>(true);
   const [page, setPage] = useState<number>(1);
   const theme = useTheme();
-  // const matchesMdDown = useMediaQuery(theme.breakpoints.down('md'));
   let columns = 3;
-  // if (matchesMdDown) {
-  //   columns = 2;
-  // }
   const limit = columns * 6;
-  const refreshRef = useRef(null);
+  const refreshRef = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
-    smoothscroll.polyfill();
     const cmsClient = cms.getInstance(environmentVariables);
     cmsClient.getPeerContent(limit).then((content) => {
       setSocialImages(content.items);
@@ -58,8 +42,8 @@ const Social = ({environmentVariables}: {environmentVariables: SerializableEnvir
     });
   }, []);
 
-  const handleChange = (event, value) => {
-    refreshRef.current.scrollIntoView();
+  const handleChange = (event: any, value: number) => {
+    refreshRef?.current?.scrollIntoView();
     setCanQuery(false);
     setPage(value);
     cms
@@ -105,18 +89,12 @@ const Social = ({environmentVariables}: {environmentVariables: SerializableEnvir
       <WebcamCapture apiKey={environmentVariables.cmsMgmtApiKey} spaceId={environmentVariables.cmsSpaceId} />
       <Container component="section" maxWidth="md" sx={{mb: 5, mt: 5}}>
         <Grid container spacing={3}>
-          <Grid
-            ref={refreshRef}
-            item
-            xs={12}
-            container
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Button variant="outlined" size="large" onClick={refresh} disabled={!canQuery}>
-              Refresh Feed
-            </Button>
+          <Grid item xs={12} container flexDirection="column" justifyContent="center" alignItems="center">
+            <div ref={refreshRef}>
+              <Button variant="outlined" size="large" onClick={refresh} disabled={!canQuery}>
+                Refresh Feed
+              </Button>
+            </div>
           </Grid>
           <Grid item xs={12} container flexDirection="column" justifyContent="center" alignItems="center">
             <Box
