@@ -2,6 +2,6 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['images.unsplash.com', 'downloads.ctfassets.net'], // TODO: remove
+    domains: ['images.unsplash.com', 'downloads.ctfassets.net', 'images.ctfassets.net'], // TODO: remove
   },
 };

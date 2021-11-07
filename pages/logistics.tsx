@@ -2,6 +2,7 @@ import Image from 'next/image';
 import {Container, Grid, Typography, Button, Link, Tooltip, ClickAwayListener} from '@mui/material';
 import React, {useState} from 'react';
 import Maps from '../components/Maps';
+import About from '../components/About';
 
 export async function getStaticProps() {
   return {
@@ -83,6 +84,7 @@ const Logistics = ({apiKey}: {apiKey: string}) => {
             {`Sara and Penny and Chris live in Black Diamond. We love you all !`}
           </Typography>
         </Grid>
+        <About />
       </Grid>
     </Container>
   );

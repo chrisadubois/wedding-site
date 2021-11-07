@@ -9,6 +9,7 @@ import Footer from '../components/Footer';
 import createEmotionCache from '../styles/globals/createEmotionCache';
 import {CacheProvider} from '@emotion/react';
 import CssBaseline from '@mui/material/CssBaseline';
+import {AppProvider} from '../context';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -23,10 +24,12 @@ export default function MyApp({Component, pageProps}: AppProps) {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Header />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <AppProvider>
+          <Header />
+          <Layout>
+            <Component id="layout" {...pageProps} />
+          </Layout>
+        </AppProvider>
         <Footer />
       </ThemeProvider>
     </CacheProvider>
