@@ -33,7 +33,34 @@ export interface IHero extends Entry<IHeroFields> {
   };
 }
 
-export type CONTENT_TYPE = 'hero';
+export interface IPeerImageFields {
+  /** title */
+  title?: string | undefined;
+
+  /** image */
+  image?: Asset | undefined;
+}
+
+/** Peer Content */
+
+export interface IPeerImage extends Entry<IPeerImageFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'peerImage';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
+export type CONTENT_TYPE = 'hero' | 'peerImage';
 
 export type LOCALE_CODE = 'en-US';
 
