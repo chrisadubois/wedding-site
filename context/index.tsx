@@ -13,6 +13,7 @@ const initialState = {
       file: null,
     },
     imageUploadStatus: null,
+    imageCanQuery: true,
   },
   base: 0,
 };

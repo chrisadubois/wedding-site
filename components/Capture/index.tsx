@@ -7,6 +7,7 @@ import {AppContext} from '../../context';
 import {Status, Types} from '../../context/reducers';
 import styles from '../../styles/modules/capture.module.scss';
 import {dataURLtoFile} from '../../common/util';
+import Image from 'next/image';
 
 const WebcamCapture = ({apiKey, spaceId}: {apiKey: string; spaceId: string}) => {
   const cmsClient = useMemo(() => new mgmt(apiKey, spaceId), [apiKey, spaceId]);
@@ -15,6 +16,7 @@ const WebcamCapture = ({apiKey, spaceId}: {apiKey: string; spaceId: string}) => 
   const webcamRef = useRef<Webcam>(null);
   const [imgSrc, setImgSrc] = useState<string | null | undefined>(null);
   const prevImgSrc = usePrevious(imgSrc);
+  const [initWebcam, setInitWebcam] = useState<boolean>(false);
 
   const capture = useCallback(() => {
     const imageSrc = webcamRef.current?.getScreenshot({width: 960, height: 540});
@@ -67,56 +69,65 @@ const WebcamCapture = ({apiKey, spaceId}: {apiKey: string; spaceId: string}) => 
   return (
     <>
       <Grid container spacing={3}>
-        <Grid
-          item
-          xs={12}
-          sm={12}
-          md={6}
-          maxWidth="md"
-          container
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-        >
+        <Grid item xs={12} container flexDirection="column" justifyContent="center" alignItems="center">
           <Typography component="h2" variant="h4" textAlign="center" gutterBottom sx={{mt: 2, ml: 2}}>
             {`We are so excited to welcome you to our wedding`}
           </Typography>
-          {state.social.imageUploadStatus === Status.Success && imgSrc && (
-            <Button variant="outlined" size="large" onClick={reset}>
-              Success !
+          {!initWebcam && (
+            <Button variant="outlined" color="primary" size="large" onClick={() => setInitWebcam(true)}>
+              Take a photo and post it to the feed !
+            </Button>
+          )}
+        </Grid>
+        <Box sx={{display: 'flex', justifyContent: 'center', width: '100%'}}>
+          {state.social.imageUploadStatus === Status.Success && imgSrc && initWebcam && (
+            <Button variant="outlined" size="large" color="success" onClick={reset}>
+              Capture Success !
             </Button>
           )}
           {state.social.imageUploadStatus === Status.Pending && (
-            <Button variant="outlined" size="large">
+            <Button variant="outlined" size="large" color="secondary">
               <CircularProgress />
             </Button>
           )}
           {state.social.imageUploadStatus === Status.Failure && (
-            <Button variant="outlined" size="large" onClick={reset}>
+            <Button variant="outlined" size="large" color="error" onClick={reset}>
               Error
             </Button>
           )}
-          {!imgSrc && state.social.imageUploadStatus !== Status.Success && (
-            <Button variant="outlined" size="large" onClick={capture}>
-              Take Photo and Upload!
+          {!imgSrc && state.social.imageUploadStatus !== Status.Success && initWebcam && (
+            <Button variant="outlined" size="large" color="primary" onClick={capture}>
+              Capture & Upload
             </Button>
           )}
-        </Grid>
-        <Grid item xs={12} sm={12} md={6} maxWidth="md">
-          <Box sx={{mt: 2, ml: 2, mr: 2}}>
-            {state.social.imageUploadStatus === Status.Success && imgSrc ? (
+          {initWebcam && (
+            <Button variant="outlined" size="large" color="secondary" onClick={() => setInitWebcam(false)}>
+              Turn Off Camera
+            </Button>
+          )}
+        </Box>
+        <Grid item xs={12} container flexDirection="column" justifyContent="center" alignItems="center">
+          <Box
+            sx={{
+              width: '50%',
+            }}
+          >
+            {state.social.imageUploadStatus === Status.Success && imgSrc && initWebcam ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img className={`${styles.camera}`} src={imgSrc} alt="self" />
             ) : (
-              <Webcam
-                className={`${styles.camera}`}
-                audio={false}
-                ref={webcamRef}
-                screenshotFormat="image/jpeg"
-                videoConstraints={{
-                  facingMode: 'user',
-                }}
-              />
+              (initWebcam && (
+                <Webcam
+                  className={`${styles.camera}`}
+                  audio={false}
+                  ref={webcamRef}
+                  screenshotFormat="image/jpeg"
+                  videoConstraints={{
+                    facingMode: 'user',
+                  }}
+                  // eslint-disable-next-line @next/next/no-img-element
+                />
+              )) || <img src="/static/undraw_group_selfie_re_h8gb.svg" alt="about" width="100%" height="auto" />
             )}
           </Box>
         </Grid>

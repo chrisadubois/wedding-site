@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import {useContext, useEffect, useState, useRef} from 'react';
+import {useContext, useEffect, useState, useRef, useCallback} from 'react';
 import {Button, Container, Grid, ImageList, ImageListItem, Pagination, Stack, useMediaQuery} from '@mui/material';
 import {Box} from '@mui/system';
 import {cms} from '../common/cms';
@@ -8,7 +8,7 @@ import WebcamCapture from '../components/Capture';
 import {IPeerImageFields} from '../types/cms/generated/contentful';
 import {Entry} from 'contentful';
 import {AppContext} from '../context';
-import {Status} from '../context/reducers';
+import {Status, Types} from '../context/reducers';
 import {usePrevious} from '../hooks/usePrevious';
 import {useTheme} from '@mui/material/styles';
 
@@ -27,7 +27,6 @@ const Social = ({environmentVariables}: {environmentVariables: SerializableEnvir
   const [socialImages, setSocialImages] = useState<Array<Entry<IPeerImageFields>> | null>(null);
   const [totalEntries, setTotalEntries] = useState<number>(0);
   const previousImageUploadStatus = usePrevious<Status | null>(state.social.imageUploadStatus);
-  const [canQuery, setCanQuery] = useState<boolean>(true);
   const [page, setPage] = useState<number>(1);
   const theme = useTheme();
   let columns = 3;
@@ -40,11 +39,16 @@ const Social = ({environmentVariables}: {environmentVariables: SerializableEnvir
       setSocialImages(content.items);
       setTotalEntries(content.total);
     });
-  }, []);
+  }, []); // must be empty array even with warning
 
   const handleChange = (event: any, value: number) => {
     refreshRef?.current?.scrollIntoView();
-    setCanQuery(false);
+    dispatch({
+      type: Types.ImageCanQuery,
+      payload: {
+        canQuery: false,
+      },
+    });
     setPage(value);
     cms
       .getInstance(environmentVariables)
@@ -54,24 +58,23 @@ const Social = ({environmentVariables}: {environmentVariables: SerializableEnvir
         setTotalEntries(content.total);
       });
     setTimeout(() => {
-      setCanQuery(true);
+      dispatch({
+        type: Types.ImageCanQuery,
+        payload: {
+          canQuery: true,
+        },
+      });
     }, 2000);
   };
 
-  useEffect(() => {
-    if (state.social.imageUploadStatus === Status.Success && previousImageUploadStatus !== Status.Success) {
-      cms
-        .getInstance(environmentVariables)
-        .getPeerContent(limit)
-        .then((content) => {
-          setSocialImages(content.items);
-          setTotalEntries(content.total);
-        });
-    }
-  }, [state.social.imageUploadStatus, previousImageUploadStatus, environmentVariables]);
-
-  const refresh = () => {
-    setCanQuery(false);
+  const refresh = useCallback(() => {
+    dispatch({
+      type: Types.ImageCanQuery,
+      payload: {
+        canQuery: false,
+      },
+    });
+    setPage(1);
     cms
       .getInstance(environmentVariables)
       .getPeerContent(limit)
@@ -80,9 +83,21 @@ const Social = ({environmentVariables}: {environmentVariables: SerializableEnvir
         setTotalEntries(content.total);
       });
     setTimeout(() => {
-      setCanQuery(true);
+      dispatch({
+        type: Types.ImageCanQuery,
+        payload: {
+          canQuery: true,
+        },
+      });
     }, 2000);
-  };
+  }, [environmentVariables, limit, dispatch]);
+
+  // TODO: come back as the refresh automatically does not happen on first photo
+  useEffect(() => {
+    if (state.social.imageUploadStatus === Status.Success && previousImageUploadStatus !== Status.Success) {
+      refresh();
+    }
+  }, [state.social.imageUploadStatus, previousImageUploadStatus, refresh]);
 
   return (
     <Box>
@@ -91,7 +106,7 @@ const Social = ({environmentVariables}: {environmentVariables: SerializableEnvir
         <Grid container spacing={3}>
           <Grid item xs={12} container flexDirection="column" justifyContent="center" alignItems="center">
             <div ref={refreshRef}>
-              <Button variant="outlined" size="large" onClick={refresh} disabled={!canQuery}>
+              <Button variant="outlined" size="large" onClick={refresh} disabled={!state.social.imageCanQuery}>
                 Refresh Feed
               </Button>
             </div>
@@ -125,7 +140,7 @@ const Social = ({environmentVariables}: {environmentVariables: SerializableEnvir
                 page={page}
                 onChange={handleChange}
                 color="primary"
-                disabled={!canQuery}
+                disabled={!state.social.imageCanQuery}
               />
             </Stack>
           </Grid>

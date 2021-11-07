@@ -13,6 +13,7 @@ export enum Types {
   Add = 'ADD',
   ImageUploadStatus = 'IMAGE_UPLOAD_STATUS',
   ImageFileSource = 'IMAGE_FILE_SOURCE',
+  ImageCanQuery = 'IMAGE_CAN_QUERY',
 }
 
 export enum Status {
@@ -28,6 +29,7 @@ export type ImageFileSource = {
 
 export type SocialState = {
   imageUploadStatus: Status | null;
+  imageCanQuery: boolean;
   imageFileSrc: ImageFileSource;
 };
 
@@ -37,6 +39,9 @@ export type SocialPayload = {
   };
   [Types.ImageUploadStatus]: {
     status: Status | null;
+  };
+  [Types.ImageCanQuery]: {
+    canQuery: boolean;
   };
 };
 
@@ -48,6 +53,8 @@ export const socialReducer = (state: SocialState, action: SocialActions | BaseAc
     return {...state, imageFileSrc: {src: action.payload.imgFileSrc.src, file: action.payload.imgFileSrc.file}};
   case Types.ImageUploadStatus:
     return {...state, imageUploadStatus: action.payload.status};
+  case Types.ImageCanQuery:
+    return {...state, imageCanQuery: action.payload.canQuery};
   default:
     return state;
   }
