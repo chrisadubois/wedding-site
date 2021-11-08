@@ -3,7 +3,6 @@ import Grid from '@mui/material/Grid';
 import Image from 'next/image';
 import {HeroProps} from '../../types/ui';
 import {Typography} from '@mui/material';
-import {ArrowDownward} from '@mui/icons-material';
 
 const Hero: NextPage<HeroProps> = ({image, title, subtitle}: HeroProps) => {
   return (
@@ -24,24 +23,25 @@ const Hero: NextPage<HeroProps> = ({image, title, subtitle}: HeroProps) => {
         sx={{
           position: 'absolute',
           inset: 0,
-          backgroundColor: 'rgba(0,0,0, .3)',
+          backgroundColor: 'rgba(0,0,0, .5)',
         }}
       >
         <Grid container item flexDirection="column" justifyContent="center" alignItems="center">
           <Typography
-            variant="h1"
+            variant="h2"
             align="center"
             gutterBottom
             sx={{
               color: 'secondary.main',
               fontWeight: 300,
+              opacity: '0.5',
             }}
           >
             {title}
           </Typography>
           <Typography
             component="p"
-            variant="h3"
+            variant="h4"
             align="center"
             color="primary.main"
             sx={{
@@ -50,10 +50,6 @@ const Hero: NextPage<HeroProps> = ({image, title, subtitle}: HeroProps) => {
           >
             {subtitle}
           </Typography>
-          <Typography component="p" variant="h6" color="secondary" gutterBottom>
-            {`About Us`}
-          </Typography>
-          <ArrowDownward fontSize="large" color="secondary" />
         </Grid>
       </Grid>
     </Grid>

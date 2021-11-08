@@ -7,7 +7,7 @@ import {AppContext} from '../../context';
 import {Status, Types} from '../../context/reducers';
 import styles from '../../styles/modules/capture.module.scss';
 import {dataURLtoFile} from '../../common/util';
-import Image from 'next/image';
+import {v4} from 'uuid';
 
 const WebcamCapture = ({apiKey, spaceId}: {apiKey: string; spaceId: string}) => {
   const cmsClient = useMemo(() => new mgmt(apiKey, spaceId), [apiKey, spaceId]);
@@ -19,9 +19,23 @@ const WebcamCapture = ({apiKey, spaceId}: {apiKey: string; spaceId: string}) => 
   const [initWebcam, setInitWebcam] = useState<boolean>(false);
 
   const capture = useCallback(() => {
+    dispatch({
+      type: Types.ImageCanQuery,
+      payload: {
+        canQuery: false,
+      },
+    });
     const imageSrc = webcamRef.current?.getScreenshot({width: 960, height: 540});
     setImgSrc(imageSrc);
-  }, [webcamRef, setImgSrc]);
+    setTimeout(() => {
+      dispatch({
+        type: Types.ImageCanQuery,
+        payload: {
+          canQuery: true,
+        },
+      });
+    }, 3000);
+  }, [webcamRef, setImgSrc, dispatch]);
 
   const reset = useCallback(() => {
     dispatch({
@@ -35,7 +49,7 @@ const WebcamCapture = ({apiKey, spaceId}: {apiKey: string; spaceId: string}) => 
 
   useEffect(() => {
     if (!prevImgSrc && imgSrc) {
-      const imgFile = dataURLtoFile(imgSrc, 'photo2.jpg');
+      const imgFile = dataURLtoFile(imgSrc, `peer_content-${v4()}.jpg`);
       dispatch({
         type: Types.ImageUploadStatus,
         payload: {
@@ -96,7 +110,13 @@ const WebcamCapture = ({apiKey, spaceId}: {apiKey: string; spaceId: string}) => 
             </Button>
           )}
           {!imgSrc && state.social.imageUploadStatus !== Status.Success && initWebcam && (
-            <Button variant="outlined" size="large" color="primary" onClick={capture}>
+            <Button
+              variant="outlined"
+              size="large"
+              color="primary"
+              onClick={capture}
+              disabled={!state.social.imageCanQuery}
+            >
               Capture & Upload
             </Button>
           )}

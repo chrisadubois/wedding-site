@@ -19,11 +19,7 @@ const Header = () => {
   return (
     <>
       <HideOnScroll>
-        <AppBar
-          position="fixed"
-          // color="transparent"
-          // sx={{boxShadow: `none`}}
-        >
+        <AppBar position="fixed">
           <Toolbar>
             <Container maxWidth="lg" sx={{display: `flex`, justifyContent: `space-between`}}>
               <IconButton edge="start" aria-label="home">
