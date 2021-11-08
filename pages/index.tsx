@@ -9,11 +9,13 @@ import {getSerializableEnvironment} from '../common/env';
 export async function getStaticProps() {
   const environmentVariables = getSerializableEnvironment(process.env);
   const cmsClient = cms.getInstance(environmentVariables);
-  const heroImage = await cmsClient.getHeroImage();
+  const heroData = await cmsClient.getHeroData();
+  const galleryData = await cmsClient.getGalleryData();
 
   return {
     props: {
-      heroImage: heroImage,
+      heroData: heroData,
+      galleryData: galleryData,
     },
   };
 }
@@ -21,24 +23,28 @@ export async function getStaticProps() {
 const renderer = ({days, hours, minutes, seconds, completed}: CountdownRenderProps): ReactElement => {
   if (completed) {
     // Render a completed state
-    return <span>{`Mr. & Mrs. DuBois`}</span>;
+    return <span>{`Happily Ever After!`}</span>;
   } else {
     // Render a countdown
-    return <span>{`${days}:${hours}:${minutes}:${seconds}`}</span>;
+    return (
+      <span>{`${days > 0 ? `${days} days ` : ''}${hours > 0 ? `${hours} hours ` : ''}${
+        minutes > 0 ? `${minutes} minutes ` : ''
+      }${seconds} seconds until "I do"`}</span>
+    );
   }
 };
 
-const Home = ({heroImage}: HomeProps) => {
+const Home = ({heroData, galleryData}: HomeProps) => {
   return (
     <>
       {
         <Hero
-          image={{src: `https:${heroImage?.fields.file.url}`, alt: 'Sara and Chris'}}
-          title={`DuBois & Crauer Wedding`}
-          subtitle={<Countdown date={new Date('2022-07-16T12:00:00')} renderer={renderer} />}
+          image={{src: `https:${heroData.image?.fields.file.url}`, alt: 'Sara and Chris'}}
+          title={heroData.title || `DuBois & Crauer Wedding`}
+          subtitle={<Countdown date={new Date(heroData.eventDate || '2022-07-16T12:00:00')} renderer={renderer} />}
         />
       }
-      <Images />
+      <Images images={galleryData} />
     </>
   );
 };
