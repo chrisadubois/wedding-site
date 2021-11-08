@@ -1,15 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
-import React, {useState} from 'react';
+import React, {useState, ReactElement} from 'react';
 import ImageListItem from '@mui/material/ImageListItem';
 import {ImageListItemBar} from '@mui/material';
 
-const ImageItem = ({item}: {item: {img: string; title: string}}) => {
+const ImageItem = ({item}: {item: {img: string; title: string}}): ReactElement => {
   const [hover, setHover] = useState(false);
   return (
     <ImageListItem>
       <img
-        src={`${item.img}?w=248&fit=crop&auto=format`}
-        srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+        src={item.img}
         alt={item.title}
         loading="lazy"
         onMouseEnter={() => setHover(true)}

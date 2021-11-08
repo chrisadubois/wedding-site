@@ -1,3 +1,4 @@
+import {useEffect} from 'react';
 import '../styles/globals/globals.scss';
 import type {AppProps} from 'next/app';
 import Head from 'next/head';
@@ -10,10 +11,15 @@ import createEmotionCache from '../styles/globals/createEmotionCache';
 import {CacheProvider} from '@emotion/react';
 import CssBaseline from '@mui/material/CssBaseline';
 import {AppProvider} from '../context';
+import LogRocket from 'logrocket';
 
 const clientSideEmotionCache = createEmotionCache();
 
 export default function MyApp({Component, pageProps}: AppProps) {
+  useEffect(() => {
+    LogRocket.init('p8xor5/weddingsite');
+  });
+
   return (
     <CacheProvider value={clientSideEmotionCache}>
       <Head>

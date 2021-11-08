@@ -12,7 +12,7 @@ export async function getStaticProps() {
   };
 }
 
-const Logistics = ({apiKey}: {apiKey: string}) => {
+const Details = ({apiKey}: {apiKey: string}) => {
   const [open, setOpen] = useState(false);
 
   const handleTooltipClose = () => {
@@ -85,9 +85,29 @@ const Logistics = ({apiKey}: {apiKey: string}) => {
           </Typography>
         </Grid>
         <About />
+        {/* <Grid item xs={12} sm={6} md={6}>
+          <iframe
+            style={{display: 'block'}}
+            title="wedding playlist"
+            src="https://open.spotify.com/embed/playlist/4noEJArU0yMx9WXMOmMl9s"
+            width="300"
+            height="380"
+            frameBorder="0"
+            allowtransparency={true}
+            allow="encrypted-media"
+          ></iframe>
+        </Grid>
+        <Grid item xs={12} sm={6} md={6} container flexDirection="column" justifyContent="center" alignItems="center">
+          <Typography component="h2" variant="h4" textAlign="center" gutterBottom>
+            {`We are so excited to welcome you to our wedding`}
+          </Typography>
+          <Typography textAlign="center">
+            {`Sara and Penny and Chris live in Black Diamond. We love you all !`}
+          </Typography>
+        </Grid> */}
       </Grid>
     </Container>
   );
 };
 
-export default Logistics;
+export default Details;

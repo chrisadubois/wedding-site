@@ -1,5 +1,6 @@
 import {createClient} from 'contentful-management';
 import {AssetFileProp, EntryProps, KeyValueMap} from 'contentful-management/dist/typings/export-types';
+import {v4} from 'uuid';
 
 export class mgmt {
   private client;
@@ -21,7 +22,7 @@ export class mgmt {
         environment
           .createEntry('peerImage', {
             fields: {
-              title: {'en-US': 'Entry title'},
+              title: {'en-US': 'Peer Content'},
             },
             version: '1',
           } as Omit<EntryProps<KeyValueMap>, 'sys'>)
@@ -31,7 +32,7 @@ export class mgmt {
                 .createAssetFromFiles({
                   fields: {
                     title: {
-                      'en-US': 'photo2.jpg',
+                      'en-US': 'Peer Content',
                     },
                     description: {
                       'en-US': 'peer generated content',
@@ -39,14 +40,14 @@ export class mgmt {
                     file: {
                       'en-US': {
                         contentType: file.type,
-                        fileName: 'photo2.jpg',
+                        fileName: file.name || `peerContent-${v4()}`,
                         file,
                       },
                     },
                   },
                   version: '1',
                 } as Omit<AssetFileProp, 'sys'>)
-                .then((asset) => asset.processForAllLocales({processingCheckWait: 2000}))
+                .then((asset) => asset.processForAllLocales({processingCheckWait: 250}))
                 .then((asset) => asset.publish())
                 .then((asset) => {
                   entry.fields['image'] = {

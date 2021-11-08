@@ -1,6 +1,6 @@
 import {ImageProps} from 'next/image';
-import {ReactElement, ReactNode} from 'react';
-import {HeroImage} from './cms';
+import {ReactElement} from 'react';
+import {GalleryData, HeroData} from './cms';
 import {NavRoute} from './global';
 
 export interface SimpleContainerProps {
@@ -14,7 +14,8 @@ export interface NavigationProps {
 }
 
 export interface HomeProps {
-  heroImage: HeroImage;
+  heroData: HeroData;
+  galleryData: GalleryData;
 }
 
 export interface HeroProps {

@@ -3,6 +3,28 @@
 import {Asset, Entry} from 'contentful';
 import {Document} from '@contentful/rich-text-types';
 
+export interface IGiftFields {
+  /** url */
+  url?: string | undefined;
+}
+
+export interface IGift extends Entry<IGiftFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'gift';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
 export interface IHeroFields {
   /** HeroImage */
   heroImage?: Asset | undefined;
@@ -10,8 +32,8 @@ export interface IHeroFields {
   /** Title */
   title?: string | undefined;
 
-  /** subtitle */
-  subtitle?: string | undefined;
+  /** EventDate */
+  eventDate?: string | undefined;
 }
 
 /** Hero Image */
@@ -26,6 +48,93 @@ export interface IHero extends Entry<IHeroFields> {
     contentType: {
       sys: {
         id: 'hero';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
+export interface IHomeCuratedGalleryFields {
+  /** Gallery */
+  gallery?: Asset[] | undefined;
+
+  /** Title */
+  title?: string | undefined;
+}
+
+export interface IHomeCuratedGallery extends Entry<IHomeCuratedGalleryFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'homeCuratedGallery';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
+export interface ILocationTimeDateFields {
+  /** location */
+  location?: {lat: number; lon: number} | undefined;
+
+  /** date */
+  date?: string | undefined;
+
+  /** address */
+  address?: string | undefined;
+
+  /** googleMapsUrl */
+  googleMapsUrl?: string | undefined;
+
+  /** description */
+  description?: string | undefined;
+}
+
+export interface ILocationTimeDate extends Entry<ILocationTimeDateFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'locationTimeDate';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
+export interface IMusicFields {
+  /** spotifyUrl */
+  spotifyUrl?: string | undefined;
+
+  /** height */
+  height?: number | undefined;
+
+  /** width */
+  width?: number | undefined;
+}
+
+export interface IMusic extends Entry<IMusicFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'music';
         linkType: 'ContentType';
         type: 'Link';
       };
@@ -60,7 +169,62 @@ export interface IPeerImage extends Entry<IPeerImageFields> {
   };
 }
 
-export type CONTENT_TYPE = 'hero' | 'peerImage';
+export interface IRsvpFields {
+  /** url */
+  url?: string | undefined;
+}
+
+export interface IRsvp extends Entry<IRsvpFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'rsvp';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
+export interface IVenueDetailsFields {
+  /** coverImage */
+  coverImage?: Asset | undefined;
+
+  /** description */
+  description?: string | undefined;
+}
+
+export interface IVenueDetails extends Entry<IVenueDetailsFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'venueDetails';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
+export type CONTENT_TYPE =
+  | 'gift'
+  | 'hero'
+  | 'homeCuratedGallery'
+  | 'locationTimeDate'
+  | 'music'
+  | 'peerImage'
+  | 'rsvp'
+  | 'venueDetails';
 
 export type LOCALE_CODE = 'en-US';
 
