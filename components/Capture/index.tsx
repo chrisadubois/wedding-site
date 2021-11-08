@@ -37,16 +37,6 @@ const WebcamCapture = ({apiKey, spaceId}: {apiKey: string; spaceId: string}) => 
     }, 3000);
   }, [webcamRef, setImgSrc, dispatch]);
 
-  const reset = useCallback(() => {
-    dispatch({
-      type: Types.ImageUploadStatus,
-      payload: {
-        status: null,
-      },
-    });
-    setImgSrc(null);
-  }, [dispatch]);
-
   useEffect(() => {
     if (!prevImgSrc && imgSrc) {
       const imgFile = dataURLtoFile(imgSrc, `peer_content-${v4()}.jpg`);
@@ -89,39 +79,6 @@ const WebcamCapture = ({apiKey, spaceId}: {apiKey: string; spaceId: string}) => 
     });
     setImgSrc(null);
   }, [dispatch]);
-
-  useEffect(() => {
-    if (!prevImgSrc && imgSrc) {
-      const imgFile = dataURLtoFile(imgSrc, 'photo2.jpg');
-      dispatch({
-        type: Types.ImageUploadStatus,
-        payload: {
-          status: Status.Pending,
-        },
-      });
-      cmsClient
-        .upload(imgFile)
-        .then(() => {
-          dispatch({
-            type: Types.ImageUploadStatus,
-            payload: {
-              status: Status.Success,
-            },
-          });
-        })
-        .catch((e) => {
-          dispatch({
-            type: Types.ImageUploadStatus,
-            payload: {
-              status: Status.Failure,
-            },
-          });
-        });
-    }
-    if (prevImgSrc && !imgSrc) {
-      setImgSrc(null);
-    }
-  }, [imgSrc, cmsClient, prevImgSrc, dispatch]);
 
   return (
     <>

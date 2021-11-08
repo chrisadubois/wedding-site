@@ -85,7 +85,7 @@ const Details = ({apiKey}: {apiKey: string}) => {
           </Typography>
         </Grid>
         <About />
-        <Grid item xs={12} sm={6} md={6}>
+        {/* <Grid item xs={12} sm={6} md={6}>
           <iframe
             style={{display: 'block'}}
             title="wedding playlist"
@@ -93,7 +93,7 @@ const Details = ({apiKey}: {apiKey: string}) => {
             width="300"
             height="380"
             frameBorder="0"
-            allowTransparency={true}
+            allowtransparency={true}
             allow="encrypted-media"
           ></iframe>
         </Grid>
@@ -104,7 +104,7 @@ const Details = ({apiKey}: {apiKey: string}) => {
           <Typography textAlign="center">
             {`Sara and Penny and Chris live in Black Diamond. We love you all !`}
           </Typography>
-        </Grid>
+        </Grid> */}
       </Grid>
     </Container>
   );
