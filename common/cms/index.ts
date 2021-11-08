@@ -59,4 +59,18 @@ export class cms implements ICMS {
 
     return {items: data.items, total: data.total};
   };
+
+  public getPeerContent = async (
+    limit?: number,
+    skip?: number
+  ): Promise<{items: Array<Entry<IPeerImageFields>>; total: number}> => {
+    const query = {
+      content_type: ContentTypeQuery.PEER_IMAGE,
+      limit: limit || 1000,
+      skip: skip || 0,
+    };
+    const data: EntryCollection<IPeerImageFields> = await this.client.getEntries(query);
+
+    return {items: data.items, total: data.total};
+  };
 }
