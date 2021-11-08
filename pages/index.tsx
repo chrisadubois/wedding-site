@@ -40,8 +40,8 @@ const Home = ({heroData, galleryData}: HomeProps) => {
       {
         <Hero
           image={{src: `https:${heroData?.image?.fields?.file?.url || ''}`, alt: 'Sara and Chris'}}
-          title={heroData.title || `DuBois & Crauer Wedding`}
-          subtitle={<Countdown date={new Date(heroData.eventDate || '2022-07-16T12:00:00')} renderer={renderer} />}
+          title={heroData?.title || `DuBois & Crauer Wedding`}
+          subtitle={<Countdown date={new Date(heroData?.eventDate || '2022-07-16T12:00:00')} renderer={renderer} />}
         />
       }
       <Images images={galleryData} />
