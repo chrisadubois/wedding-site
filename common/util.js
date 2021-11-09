@@ -6,7 +6,7 @@ export const dataURLtoFile = (dataUrl = '', filename = '') => {
     u8arr = new Uint8Array(n);
 
   while (n--) {
-    u8arr[n] = bstr.at(n);
+    u8arr[n] = bstr[n];
   }
 
   return new File([u8arr], filename, {type: mime});
