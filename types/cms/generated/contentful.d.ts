@@ -3,12 +3,53 @@
 import {Asset, Entry} from 'contentful';
 import {Document} from '@contentful/rich-text-types';
 
-export interface IGiftFields {
-  /** url */
-  url?: string | undefined;
+export interface IDetailsFields {
+  /** EventDate */
+  eventDate: string;
+
+  /** EventAddressSearch */
+  eventAddressSearch?: string | undefined;
+
+  /** EventLocation */
+  eventLocation?: {lat: number; lon: number} | undefined;
+
+  /** EventAddress */
+  eventAddress?: string | undefined;
+
+  /** EventDescription */
+  eventDescription?: string | undefined;
+
+  /** VenueImageMain */
+  venueImageMain?: Asset | undefined;
+
+  /** VenueTitle */
+  venueTitle?: string | undefined;
+
+  /** VenueDescription */
+  venueDescription?: string | undefined;
+
+  /** RsvpUrl */
+  rsvpUrl?: string | undefined;
+
+  /** RsvpTitle */
+  rsvpTitle?: string | undefined;
+
+  /** RsvpDescription */
+  rsvpDescription?: string | undefined;
+
+  /** GiftUrl */
+  giftUrl?: string | undefined;
+
+  /** GiftTitle */
+  giftTitle?: string | undefined;
+
+  /** GiftDescription */
+  giftDescription?: string | undefined;
 }
 
-export interface IGift extends Entry<IGiftFields> {
+/** Details Page */
+
+export interface IDetails extends Entry<IDetailsFields> {
   sys: {
     id: string;
     type: string;
@@ -17,7 +58,7 @@ export interface IGift extends Entry<IGiftFields> {
     locale: string;
     contentType: {
       sys: {
-        id: 'gift';
+        id: 'details';
         linkType: 'ContentType';
         type: 'Link';
       };
@@ -80,40 +121,6 @@ export interface IHomeCuratedGallery extends Entry<IHomeCuratedGalleryFields> {
   };
 }
 
-export interface ILocationTimeDateFields {
-  /** location */
-  location?: {lat: number; lon: number} | undefined;
-
-  /** date */
-  date?: string | undefined;
-
-  /** address */
-  address?: string | undefined;
-
-  /** googleMapsUrl */
-  googleMapsUrl?: string | undefined;
-
-  /** description */
-  description?: string | undefined;
-}
-
-export interface ILocationTimeDate extends Entry<ILocationTimeDateFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'locationTimeDate';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
 export interface IMusicFields {
   /** spotifyUrl */
   spotifyUrl?: string | undefined;
@@ -169,62 +176,7 @@ export interface IPeerImage extends Entry<IPeerImageFields> {
   };
 }
 
-export interface IRsvpFields {
-  /** url */
-  url?: string | undefined;
-}
-
-export interface IRsvp extends Entry<IRsvpFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'rsvp';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
-export interface IVenueDetailsFields {
-  /** coverImage */
-  coverImage?: Asset | undefined;
-
-  /** description */
-  description?: string | undefined;
-}
-
-export interface IVenueDetails extends Entry<IVenueDetailsFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'venueDetails';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
-export type CONTENT_TYPE =
-  | 'gift'
-  | 'hero'
-  | 'homeCuratedGallery'
-  | 'locationTimeDate'
-  | 'music'
-  | 'peerImage'
-  | 'rsvp'
-  | 'venueDetails';
+export type CONTENT_TYPE = 'details' | 'hero' | 'homeCuratedGallery' | 'music' | 'peerImage';
 
 export type LOCALE_CODE = 'en-US';
 

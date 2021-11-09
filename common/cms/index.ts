@@ -1,7 +1,12 @@
 import {createClient, Entry, EntryCollection, Asset} from 'contentful';
 
-import {ContentTypeQuery, GalleryData, HeroData, HeroImage, ICMS, PeerImage} from '../../types/cms';
-import {IHeroFields, IHomeCuratedGalleryFields, IPeerImageFields} from '../../types/cms/generated/contentful';
+import {ContentTypeQuery, DetailsData, GalleryData, HeroData, HeroImage, ICMS, PeerImage} from '../../types/cms';
+import {
+  IDetailsFields,
+  IHeroFields,
+  IHomeCuratedGalleryFields,
+  IPeerImageFields,
+} from '../../types/cms/generated/contentful';
 import {SerializableEnvironment} from '../env';
 
 export class cms implements ICMS {
@@ -25,6 +30,14 @@ export class cms implements ICMS {
 
     return cms.instance;
   }
+
+  public getDetailsData = async (): Promise<DetailsData> => {
+    const data: EntryCollection<IDetailsFields> = await this.client.getEntries({
+      content_type: ContentTypeQuery.DETAILS,
+    });
+
+    return data.items[0].fields;
+  };
 
   public getHeroData = async (): Promise<HeroData> => {
     const data: EntryCollection<IHeroFields> = await this.client.getEntries({

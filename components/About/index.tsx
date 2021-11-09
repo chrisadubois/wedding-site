@@ -1,5 +1,6 @@
 import {Button, Container, Grid, Typography} from '@mui/material';
 import Image from 'next/image';
+import {GIFT_REGISTRY} from '../../common/constants';
 import StyledLink from '../StyledLink';
 
 const SectionAbout = () => {
@@ -13,11 +14,7 @@ const SectionAbout = () => {
           <Typography textAlign="center" sx={{mb: 5}}>
             {`Sara and Penny and Chris live in Black Diamond. We love you all !`}
           </Typography>
-          <StyledLink
-            href="https://www.eventbrite.com/e/dubois-crauer-wedding-tickets-206185224557?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=listing&utm-source=cp&aff=escb"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
+          <StyledLink href={GIFT_REGISTRY} rel="noopener noreferrer" target="_blank">
             <Button variant="outlined" size="large">
               RSVP
             </Button>
