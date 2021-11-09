@@ -29,8 +29,12 @@ const Social = ({environmentVariables}: {environmentVariables: SerializableEnvir
   const previousImageUploadStatus = usePrevious<Status | null>(state.social.imageUploadStatus);
   const [page, setPage] = useState<number>(1);
   const theme = useTheme();
+  const matchesSmDown = useMediaQuery(theme.breakpoints.down('sm'));
   let columns = 3;
-  const limit = columns * 6;
+  if (matchesSmDown) {
+    columns = 2;
+  }
+  const limit = 18; // columns * 6;
   const refreshRef = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
@@ -107,7 +111,7 @@ const Social = ({environmentVariables}: {environmentVariables: SerializableEnvir
           <Grid item xs={12} container flexDirection="column" justifyContent="center" alignItems="center">
             <div ref={refreshRef}>
               <Button variant="outlined" size="large" onClick={refresh} disabled={!state.social.imageCanQuery}>
-                Refresh Feed
+                {state.social.imageCanQuery ? `Refresh Feed` : `Wait a sec`}
               </Button>
             </div>
           </Grid>
@@ -116,9 +120,10 @@ const Social = ({environmentVariables}: {environmentVariables: SerializableEnvir
               sx={{
                 width: '100%',
                 height: '100%',
+                mt: 5,
               }}
             >
-              <ImageList sx={{width: '100%', height: '100%'}} variant="masonry" cols={3} gap={5}>
+              <ImageList sx={{width: '100%', height: '100%'}} variant="quilted" cols={columns} gap={5}>
                 {socialImages?.map((item, i) => {
                   return (
                     <ImageListItem key={i}>

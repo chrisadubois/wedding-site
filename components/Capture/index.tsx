@@ -25,7 +25,7 @@ const WebcamCapture = ({apiKey, spaceId}: {apiKey: string; spaceId: string}) => 
         canQuery: false,
       },
     });
-    const imageSrc = webcamRef.current?.getScreenshot({width: 960, height: 540});
+    const imageSrc = webcamRef.current?.getScreenshot();
     setImgSrc(imageSrc);
     setTimeout(() => {
       dispatch({
@@ -34,7 +34,7 @@ const WebcamCapture = ({apiKey, spaceId}: {apiKey: string; spaceId: string}) => 
           canQuery: true,
         },
       });
-    }, 3000);
+    }, 5000);
   }, [webcamRef, setImgSrc, dispatch]);
 
   useEffect(() => {
@@ -117,7 +117,7 @@ const WebcamCapture = ({apiKey, spaceId}: {apiKey: string; spaceId: string}) => 
               onClick={capture}
               disabled={!state.social.imageCanQuery}
             >
-              Capture & Upload
+              {state.social.imageCanQuery ? `Capture & Upload` : `Wait a sec`}
             </Button>
           )}
           {initWebcam && (

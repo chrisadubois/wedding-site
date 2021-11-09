@@ -24,14 +24,14 @@ const Images = ({images}: {images: GalleryData}) => {
   }
 
   return (
-    <Container component="section" maxWidth="lg" sx={{mb: 5, mt: 5}}>
+    <Container component="section" maxWidth="xl" sx={{mb: 5, mt: 5}}>
       <Box
         sx={{
           width: '100',
           height: '100%',
         }}
       >
-        <ImageList sx={{width: '100%', height: '100%'}} variant="quilted" cols={columns} gap={8}>
+        <ImageList sx={{width: '100%', height: '100%'}} variant="masonry" cols={columns} gap={8}>
           {images?.map((image, i) => (
             <ImageItem
               key={`${image.fields.title}-${i}`}
