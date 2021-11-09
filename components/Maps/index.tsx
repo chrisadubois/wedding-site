@@ -38,8 +38,7 @@ const Maps = ({
       onLoad={onLoad}
       onUnmount={onUnmount}
     >
-      {<Marker visible={true} position={pos} />}
-      <></>
+      {<Marker visible={true} position={pos}></Marker>}
     </GoogleMap>
   ) : (
     <></>
