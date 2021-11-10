@@ -18,8 +18,8 @@ const Maps = ({
   const [map, setMap] = useState(null);
 
   const onLoad = useCallback((map) => {
-    const bounds = new window.google.maps.LatLngBounds();
-    map.fitBounds(bounds);
+    // const bounds = new window.google.maps.LatLngBounds(pos);
+    // map.fitBounds(bounds);
     setMap(map);
   }, []);
 
