@@ -11,7 +11,7 @@ const Hero: NextPage<HeroProps> = ({image, title, subtitle}: HeroProps) => {
       container
       sx={{
         position: `relative`,
-        height: '100vh',
+        height: '92vh',
         width: `100vw`,
         overflow: `hidden`,
         zIndex: -100,

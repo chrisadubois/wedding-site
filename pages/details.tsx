@@ -131,7 +131,7 @@ const Details = ({mapsApiKey, details}: {mapsApiKey: string; details: DetailsDat
           <Typography textAlign="center" sx={{mb: 5}}>
             {details.rsvpDescription}
           </Typography>
-          <StyledLink href={details.rsvpUrl || ''} rel="noopener noreferrer" target="_blank">
+          <StyledLink href={details.rsvpUrl || ''} rel="noopener noreferrer">
             <Button variant="outlined" size="large">
               RSVP
             </Button>
