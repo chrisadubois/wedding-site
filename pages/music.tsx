@@ -14,33 +14,28 @@ const Music: NextPage = () => {
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         style={{width: '100%', height: '60vh'}}
       ></iframe>
-      <Typography
-        variant="caption"
-        align="center"
-        sx={{
-          color: 'secondary.main',
-        }}
-      >
-        <Box>
-          <Typography
-            variant="caption"
-            align="center"
-            sx={{
-              color: 'secondary.main',
-            }}
-          >
-            Disclaimer: It may take up to a day for a track to be added in the playlist view -
-          </Typography>
-          <Link
-            component="a"
-            href="https://open.spotify.com/playlist/63zaytd1HcY5YYOt2IFOLw?si=bb977bc7a3474320"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {`Try clicking the link to view it live !`}
-          </Link>
-        </Box>
-      </Typography>
+      <Box>
+        <Typography
+          variant="caption"
+          align="center"
+          sx={{
+            color: 'primary.dark',
+          }}
+        >
+          Disclaimer: It may take up to a day for a track to be added in the playlist view -
+        </Typography>
+        <Link
+          component="a"
+          href="https://open.spotify.com/playlist/63zaytd1HcY5YYOt2IFOLw?si=bb977bc7a3474320"
+          target="_blank"
+          rel="noopener noreferrer"
+          sx={{
+            color: 'secondary.dark',
+          }}
+        >
+          {`Try clicking the link to view it live !`}
+        </Link>
+      </Box>
     </Stack>
   );
 };
