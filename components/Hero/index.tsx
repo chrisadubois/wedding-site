@@ -11,7 +11,7 @@ const Hero: NextPage<HeroProps> = ({image, title, subtitle}: HeroProps) => {
       container
       sx={{
         position: `relative`,
-        height: '92vh',
+        height: '95vh',
         width: `100vw`,
         overflow: `hidden`,
         zIndex: -100,
@@ -32,7 +32,7 @@ const Hero: NextPage<HeroProps> = ({image, title, subtitle}: HeroProps) => {
             align="center"
             gutterBottom
             sx={{
-              color: 'secondary.main',
+              color: 'primary.main',
               fontWeight: 300,
               opacity: '0.5',
             }}
@@ -40,10 +40,10 @@ const Hero: NextPage<HeroProps> = ({image, title, subtitle}: HeroProps) => {
             {title}
           </Typography>
           <Typography
-            component="p"
-            variant="h4"
+            component="h3"
+            variant="h3"
             align="center"
-            color="primary.main"
+            color="secondary.main"
             sx={{
               mb: 10,
             }}

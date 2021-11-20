@@ -24,11 +24,11 @@ export async function getStaticProps() {
 const renderer = ({days, hours, minutes, seconds, completed}: CountdownRenderProps): ReactElement => {
   if (completed) {
     // Render a completed state
-    return <span>{`Happily Ever After!`}</span>;
+    return <Typography color="secondary.main" component="h3">{`Happily Ever After!`}</Typography>;
   } else {
     // Render a countdown
     return (
-      <Typography align="center" color="primary.main" component="h2">
+      <Typography align="center" color="secondary.main" component="h3">
         {`${days > 0 ? `${days} days ` : ''}${hours > 0 ? `${hours} hours ` : ''}${
           minutes > 0 ? `${minutes} minutes ` : ''
         }${seconds} seconds until "I do"`}

@@ -31,7 +31,7 @@ const Maps = ({
     <GoogleMap
       mapContainerStyle={{
         width: '100%',
-        height: '100%',
+        height: '300px',
       }}
       center={pos}
       zoom={zoom}
