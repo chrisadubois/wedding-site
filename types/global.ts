@@ -9,3 +9,11 @@ export type NavRoute = {
   path: string;
   external?: boolean;
 };
+
+export type Artist = {name: string};
+
+export type Artists = Array<Artist>;
+
+export type Track = {name: string; artists: Artists; uri: string};
+
+export type Tracks = {tracks: {items: Array<Track>}};

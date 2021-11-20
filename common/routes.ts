@@ -6,6 +6,6 @@ export const routes: Array<NavRoute> = [
   {title: `details`, path: `/details`},
   {title: 'rsvp', path: '/rsvp'},
   {title: `gift`, path: GIFT_REGISTRY, external: true},
-  // {title: `music`, path: `/music`},
+  {title: `music`, path: `/music`},
   {title: `social`, path: `/social`},
 ];
