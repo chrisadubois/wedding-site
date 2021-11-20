@@ -5,6 +5,7 @@ import Images from '../components/Images';
 import {cms} from '../common/cms';
 import {HomeProps} from '../types/ui';
 import {getSerializableEnvironment} from '../common/env';
+import {Typography} from '@mui/material';
 
 export async function getStaticProps() {
   const environmentVariables = getSerializableEnvironment(process.env);
@@ -27,9 +28,11 @@ const renderer = ({days, hours, minutes, seconds, completed}: CountdownRenderPro
   } else {
     // Render a countdown
     return (
-      <span>{`${days > 0 ? `${days} days ` : ''}${hours > 0 ? `${hours} hours ` : ''}${
-        minutes > 0 ? `${minutes} minutes ` : ''
-      }${seconds} seconds until "I do"`}</span>
+      <Typography align="center" color="primary.main" component="h2">
+        {`${days > 0 ? `${days} days ` : ''}${hours > 0 ? `${hours} hours ` : ''}${
+          minutes > 0 ? `${minutes} minutes ` : ''
+        }${seconds} seconds until "I do"`}
+      </Typography>
     );
   }
 };

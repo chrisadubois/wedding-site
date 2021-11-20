@@ -7,9 +7,11 @@ let theme = createTheme({
     primary: lightGreen,
     secondary: blueGrey,
   },
-  // typography: {
-  //   fontFamily: ['Alice'].join(','),
-  // },
+  typography: {
+    h2: {
+      fontStyle: 'italic',
+    },
+  },
 });
 
 theme = responsiveFontSizes(theme);
