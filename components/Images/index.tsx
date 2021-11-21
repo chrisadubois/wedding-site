@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import {useTheme} from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import {Container} from '@mui/material';
+import {Container, Typography} from '@mui/material';
 import ImageItem from '../Image';
 import {GalleryData} from '../../types/cms';
 
@@ -25,6 +25,20 @@ const Images = ({images}: {images: GalleryData}) => {
 
   return (
     <Container component="section" maxWidth="xl" sx={{mb: 5, mt: 5}}>
+      {matchesSmDown ? (
+        <Typography
+          variant="h2"
+          align="center"
+          gutterBottom
+          sx={{
+            color: 'primary.main',
+            fontWeight: 300,
+            opacity: '0.8',
+          }}
+        >
+          DuBois & Crauer Wedding
+        </Typography>
+      ) : null}
       <Box
         sx={{
           width: '100',
