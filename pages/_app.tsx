@@ -12,7 +12,7 @@ import {CacheProvider} from '@emotion/react';
 import CssBaseline from '@mui/material/CssBaseline';
 import {AppProvider} from '../context';
 import LogRocket from 'logrocket';
-import {SessionProvider, signIn, signOut, useSession} from 'next-auth/react';
+import {SessionProvider} from 'next-auth/react';
 
 const clientSideEmotionCache = createEmotionCache();
 
