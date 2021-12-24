@@ -13,8 +13,6 @@ export interface ContainerProps {
 
 export interface LayoutProps extends SimpleContainerProps {}
 
-export interface RequireAuthProps extends ContainerProps {}
-
 export interface NavigationProps {
   navLinks: Array<NavRoute>;
 }
