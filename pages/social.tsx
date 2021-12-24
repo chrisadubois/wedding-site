@@ -11,6 +11,7 @@ import {AppContext} from '../context';
 import {Status, Types} from '../context/reducers';
 import {usePrevious} from '../hooks/usePrevious';
 import {useTheme} from '@mui/material/styles';
+import {useAuth} from '../hooks/useAuth';
 
 export async function getStaticProps() {
   const environmentVariables = getSerializableEnvironment(process.env);
@@ -23,6 +24,7 @@ export async function getStaticProps() {
 }
 
 const Social = ({environmentVariables}: {environmentVariables: SerializableEnvironment}) => {
+  const authenticated = useAuth();
   const {state, dispatch} = useContext(AppContext);
   const [socialImages, setSocialImages] = useState<Array<Entry<IPeerImageFields>> | null>(null);
   const [totalEntries, setTotalEntries] = useState<number>(0);
@@ -102,6 +104,10 @@ const Social = ({environmentVariables}: {environmentVariables: SerializableEnvir
       refresh();
     }
   }, [state.social.imageUploadStatus, previousImageUploadStatus, refresh]);
+
+  if (!authenticated) {
+    return null;
+  }
 
   return (
     <Box>

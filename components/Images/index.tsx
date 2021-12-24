@@ -25,20 +25,6 @@ const Images = ({images}: {images: GalleryData}) => {
 
   return (
     <Container component="section" maxWidth="xl" sx={{mb: 5, mt: 5}}>
-      {matchesSmDown ? (
-        <Typography
-          variant="h2"
-          align="center"
-          gutterBottom
-          sx={{
-            color: 'primary.main',
-            fontWeight: 300,
-            opacity: '0.8',
-          }}
-        >
-          DuBois & Crauer Wedding
-        </Typography>
-      ) : null}
       <Box
         sx={{
           width: '100',

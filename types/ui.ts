@@ -7,6 +7,10 @@ export interface SimpleContainerProps {
   children: ReactElement;
 }
 
+export interface ContainerProps {
+  children: Array<ReactElement> | ReactElement;
+}
+
 export interface LayoutProps extends SimpleContainerProps {}
 
 export interface NavigationProps {

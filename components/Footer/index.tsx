@@ -7,7 +7,7 @@ import {IconButton, Tooltip} from '@mui/material';
 
 const Footer = () => {
   return (
-    <Box component="footer" sx={{py: 1, bgcolor: 'secondary.main'}}>
+    <Box component="footer" sx={{py: 1, width: '100%', bgcolor: 'secondary.main'}}>
       <Stack direction="row" justifyContent="center" spacing={4}>
         <StyledLink href="/info" rel="noopener noreferrer">
           <Tooltip title="About this Site">

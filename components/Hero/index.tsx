@@ -6,7 +6,7 @@ import {Typography} from '@mui/material';
 import {useTheme} from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-const Hero: NextPage<HeroProps> = ({image, title, subtitle}: HeroProps) => {
+const Hero: NextPage<HeroProps> = ({image, subtitle}: HeroProps) => {
   const theme = useTheme();
   const matchesSmUp = useMediaQuery(theme.breakpoints.up('sm'));
 
@@ -16,6 +16,7 @@ const Hero: NextPage<HeroProps> = ({image, title, subtitle}: HeroProps) => {
       sx={{
         position: `relative`,
         width: `100vw`,
+        maxHeight: `100vh`,
         overflow: `hidden`,
         zIndex: -100,
       }}
@@ -39,20 +40,6 @@ const Hero: NextPage<HeroProps> = ({image, title, subtitle}: HeroProps) => {
         }}
       >
         <Grid container item flexDirection="column" justifyContent="flex-end" alignItems="center">
-          {matchesSmUp ? (
-            <Typography
-              variant="h2"
-              align="center"
-              gutterBottom
-              sx={{
-                color: 'primary.main',
-                fontWeight: 300,
-                opacity: '0.4',
-              }}
-            >
-              {title}
-            </Typography>
-          ) : null}
           <Typography
             component="h3"
             variant="h3"
