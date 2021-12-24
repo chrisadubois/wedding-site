@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import {useTheme} from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import {Container, Typography} from '@mui/material';
+import {Container} from '@mui/material';
 import ImageItem from '../Image';
 import {GalleryData} from '../../types/cms';
 
@@ -35,7 +35,11 @@ const Images = ({images}: {images: GalleryData}) => {
           {images?.map((image, i) => (
             <ImageItem
               key={`${image.fields.title}-${i}`}
-              item={{img: `https:${image.fields.file.url}`, title: image.fields.title}}
+              item={{
+                img: `https:${image.fields.file.url}`,
+                title: image.fields.title,
+                details: image.fields.file.details,
+              }}
             />
           )) || <span></span>}
         </ImageList>

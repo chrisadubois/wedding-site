@@ -2,17 +2,33 @@
 import React, {useState, ReactElement} from 'react';
 import ImageListItem from '@mui/material/ImageListItem';
 import {ImageListItemBar} from '@mui/material';
+import Image from 'next/image';
 
-const ImageItem = ({item}: {item: {img: string; title: string}}): ReactElement => {
+const ImageItem = ({
+  item,
+}: {
+  item: {
+    img: string;
+    title: string;
+    details: {
+      size: number;
+      image?: {
+        width: number;
+        height: number;
+      };
+    };
+  };
+}): ReactElement => {
   const [hover, setHover] = useState(false);
   return (
     <ImageListItem>
-      <img
+      <Image
         src={item.img}
         alt={item.title}
-        loading="lazy"
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
+        width={item.details.image?.width}
+        height={item.details.image?.height}
       />
       <ImageListItemBar
         sx={{
