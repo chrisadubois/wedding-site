@@ -84,7 +84,7 @@ const WebcamCapture = ({apiKey, spaceId}: {apiKey: string; spaceId: string}) => 
     <>
       <Grid container spacing={3}>
         <Grid item xs={12} container flexDirection="column" justifyContent="center" alignItems="center">
-          <Typography component="h2" variant="h4" textAlign="center" gutterBottom sx={{mt: 2, ml: 2}}>
+          <Typography component="h2" variant="h4" textAlign="center" gutterBottom sx={{mt: 2}}>
             {`We are so excited to welcome you to our wedding`}
           </Typography>
           {!initWebcam && (

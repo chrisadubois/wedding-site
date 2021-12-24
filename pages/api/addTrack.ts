@@ -1,6 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type {NextApiRequest, NextApiResponse} from 'next';
 import {addTrack} from '../../lib/spotify';
+import AuthGuard from '../../middleware/AuthGuard';
 
 const handler = async (_req: NextApiRequest, res: NextApiResponse<any>) => {
   const trackUri = _req.body?.uri;
@@ -13,4 +14,4 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse<any>) => {
   return res.status(400).json(new Error('Missing parameters'));
 };
 
-export default handler;
+export default AuthGuard(handler);
