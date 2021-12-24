@@ -1,5 +1,14 @@
 import Image from 'next/image';
-import {Container, Grid, Typography, Button, Link, Tooltip, ClickAwayListener} from '@mui/material';
+import {
+  Container,
+  Grid,
+  Typography,
+  Button,
+  Link,
+  Tooltip,
+  ClickAwayListener,
+  unstable_createMuiStrictModeTheme,
+} from '@mui/material';
 import React, {useState} from 'react';
 import Maps from '../components/Maps';
 import StyledLink from '../components/StyledLink';
@@ -7,6 +16,7 @@ import {cms} from '../common/cms';
 import {getSerializableEnvironment} from '../common/env';
 import {DetailsData} from '../types/cms';
 import dayjs from 'dayjs';
+import {useAuth} from '../hooks/useAuth';
 
 export async function getStaticProps() {
   const environmentVariables = getSerializableEnvironment(process.env);
@@ -18,11 +28,13 @@ export async function getStaticProps() {
       mapsApiKey: environmentVariables.mapsApiKey,
       details: detailsData,
     },
+    revalidate: 60 * 60, // 60 seconds --> 3600 seconds = 1 hour
   };
 }
 
 const Details = ({mapsApiKey, details}: {mapsApiKey: string; details: DetailsData}) => {
   const [open, setOpen] = useState(false);
+  const authenticated = useAuth();
 
   const handleTooltipClose = () => {
     setOpen(false);
@@ -31,6 +43,10 @@ const Details = ({mapsApiKey, details}: {mapsApiKey: string; details: DetailsDat
   const handleTooltipOpen = () => {
     setOpen(true);
   };
+
+  if (!authenticated) {
+    return null;
+  }
 
   return (
     <Container component="section" maxWidth="md" sx={{mb: 5, mt: 5}}>

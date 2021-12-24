@@ -18,6 +18,7 @@ export async function getStaticProps() {
       heroData: heroData,
       galleryData: galleryData,
     },
+    revalidate: 60 * 60, // 60 seconds --> 3600 seconds = 1 hour
   };
 }
 
@@ -46,7 +47,6 @@ const Home = ({heroData, galleryData}: HomeProps) => {
             src: heroData ? `https:${heroData?.image?.fields?.file?.url || ''}` : '/static/main.jpg',
             alt: 'Sara and Chris',
           }}
-          title={heroData?.title || `DuBois & Crauer Wedding`}
           subtitle={<Countdown date={new Date(heroData?.eventDate || '2022-07-16T12:00:00')} renderer={renderer} />}
         />
       }
