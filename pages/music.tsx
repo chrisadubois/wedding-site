@@ -38,6 +38,7 @@ const Music: NextPage = () => {
           rel="noopener noreferrer"
           sx={{
             color: 'secondary.dark',
+            textAlign: 'center',
           }}
         >
           {`Try clicking the link to view the playlist on Spotify !`}
