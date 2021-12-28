@@ -45,6 +45,12 @@ export interface IDetailsFields {
 
   /** GiftDescription */
   giftDescription?: string | undefined;
+
+  /** FoodTitle */
+  foodTitle?: string | undefined;
+
+  /** FoodDescription */
+  foodDescription?: string | undefined;
 }
 
 /** Details Page */

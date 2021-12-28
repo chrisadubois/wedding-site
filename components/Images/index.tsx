@@ -18,7 +18,7 @@ const Images = ({images}: {images: GalleryData}) => {
   if (matchesMdUp) {
     columns = 4;
   } else if (matchesSmDown) {
-    columns = 2;
+    columns = 1;
   } else if (matchesMdDown) {
     columns = 3;
   }
