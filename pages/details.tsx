@@ -95,9 +95,6 @@ const Details = ({mapsApiKey, details}: {mapsApiKey: string; details: DetailsDat
               </Tooltip>
             </div>
           </ClickAwayListener>
-          <Typography textAlign="center">
-            {`Sara and Penny and Chris live in Black Diamond. We love you all !`}
-          </Typography>
         </Grid>
         <Grid item xs={12} sm={6} md={6} order={{xs: 2, sm: 2}}>
           <Maps
@@ -154,10 +151,10 @@ const Details = ({mapsApiKey, details}: {mapsApiKey: string; details: DetailsDat
           </StyledLink>
         </Grid>
         <Grid item xs={12} sm={6} order={{xs: 6, sm: 6}}>
-          <Image src="/static/wedding.svg" alt="about" layout="responsive" width={800} height={600} />
+          <Image src="/static/wedding.svg" alt="wedding" layout="responsive" width={800} height={600} />
         </Grid>
         <Grid item xs={12} sm={6} order={{xs: 8, sm: 7}}>
-          <Image src="/static/undraw_gifts_re_97j6.svg" alt="about" layout="responsive" width={800} height={600} />
+          <Image src="/static/undraw_gifts_re_97j6.svg" alt="gift" layout="responsive" width={800} height={600} />
         </Grid>
         <Grid
           item
@@ -180,6 +177,32 @@ const Details = ({mapsApiKey, details}: {mapsApiKey: string; details: DetailsDat
               GIFT
             </Button>
           </StyledLink>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          container
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          order={{xs: 9, sm: 10}}
+        >
+          <Typography component="h2" variant="h4" textAlign="center" gutterBottom>
+            {details.foodTitle}
+          </Typography>
+          <Typography textAlign="center" sx={{mb: 5}}>
+            {details.foodDescription}
+          </Typography>
+        </Grid>
+        <Grid item xs={12} sm={6} order={{xs: 9, sm: 10}}>
+          <Image
+            src="/static/undraw_special_event_-4-aj8.svg"
+            alt="food"
+            layout="responsive"
+            width={800}
+            height={600}
+          />
         </Grid>
       </Grid>
     </Container>
