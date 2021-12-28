@@ -2,7 +2,7 @@ import {Button, Slider, TextField, FormGroup, CircularProgress, Typography} from
 import type {NextPage} from 'next';
 import {useState} from 'react';
 import {useAuth} from '../hooks/useAuth';
-import {supabase} from '../lib/supabase';
+import supabase from '../lib/supabase';
 import LogRocket from 'logrocket';
 
 const rsvpIdentify = (name: string) => {
