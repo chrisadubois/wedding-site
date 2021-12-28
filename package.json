@@ -31,6 +31,7 @@
     "@mui/icons-material": "^5.0.5",
     "@mui/material": "^5.0.6",
     "@react-google-maps/api": "^2.5.0",
+    "@supabase/supabase-js": "^1.29.1",
     "axios": "^0.24.0",
     "clsx": "^1.1.1",
     "contentful": "^9.1.4",

@@ -18,6 +18,9 @@ let theme = createTheme({
       dark: '#98a786',
       contrastText: '#000',
     },
+    error: {
+      main: '#ff604f',
+    },
   },
   typography: {
     h2: {
