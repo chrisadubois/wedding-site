@@ -8,6 +8,7 @@ import {Container} from '@mui/material';
 import ImageItem from '../Image';
 import {GalleryData} from '../../types/cms';
 
+// TODO: infinite scroll
 const Images = ({images}: {images: GalleryData}) => {
   const theme = useTheme();
   const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'));

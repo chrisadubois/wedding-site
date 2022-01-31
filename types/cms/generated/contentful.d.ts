@@ -51,6 +51,12 @@ export interface IDetailsFields {
 
   /** FoodDescription */
   foodDescription?: string | undefined;
+
+  /** AccomodationList */
+  accomodationList?: Document | undefined;
+
+  /** AccomodationTitle */
+  accomodationTitle?: string | undefined;
 }
 
 /** Details Page */
@@ -65,6 +71,28 @@ export interface IDetails extends Entry<IDetailsFields> {
     contentType: {
       sys: {
         id: 'details';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
+export interface IEngagementPhotosFields {
+  /** EngagementPhotos */
+  engagementPhotos?: Asset[] | undefined;
+}
+
+export interface IEngagementPhotos extends Entry<IEngagementPhotosFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'engagementPhotos';
         linkType: 'ContentType';
         type: 'Link';
       };
@@ -182,7 +210,7 @@ export interface IPeerImage extends Entry<IPeerImageFields> {
   };
 }
 
-export type CONTENT_TYPE = 'details' | 'hero' | 'homeCuratedGallery' | 'music' | 'peerImage';
+export type CONTENT_TYPE = 'details' | 'engagementPhotos' | 'hero' | 'homeCuratedGallery' | 'music' | 'peerImage';
 
 export type LOCALE_CODE = 'en-US';
 

@@ -17,6 +17,7 @@ import {getSerializableEnvironment} from '../common/env';
 import {DetailsData} from '../types/cms';
 import dayjs from 'dayjs';
 import {useAuth} from '../hooks/useAuth';
+import {documentToReactComponents} from '@contentful/rich-text-react-renderer';
 
 export async function getStaticProps() {
   const environmentVariables = getSerializableEnvironment(process.env);
@@ -203,6 +204,26 @@ const Details = ({mapsApiKey, details}: {mapsApiKey: string; details: DetailsDat
             width={800}
             height={600}
           />
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          container
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          order={{xs: 11, sm: 12}}
+        >
+          <Typography component="h2" variant="h4" textAlign="center" gutterBottom>
+            {details.accomodationTitle}
+          </Typography>
+          <Typography textAlign="center" sx={{mb: 5}}>
+            {details?.accomodationList !== undefined ? documentToReactComponents(details?.accomodationList) : null}
+          </Typography>
+        </Grid>
+        <Grid item xs={12} sm={6} order={{xs: 12, sm: 11}}>
+          <Image src="/static/undraw_travel_plans_li01.svg" alt="food" layout="responsive" width={800} height={600} />
         </Grid>
       </Grid>
     </Container>
