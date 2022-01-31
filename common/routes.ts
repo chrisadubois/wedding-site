@@ -8,4 +8,5 @@ export const routes: Array<NavRoute> = [
   {title: `gift`, path: GIFT_REGISTRY, external: true},
   {title: `music`, path: `/music`},
   {title: `social`, path: `/social`},
+  {title: `engagement`, path: '/engagement'},
 ];

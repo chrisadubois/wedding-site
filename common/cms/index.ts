@@ -1,8 +1,18 @@
 import {createClient, Entry, EntryCollection, Asset} from 'contentful';
 
-import {ContentTypeQuery, DetailsData, GalleryData, HeroData, HeroImage, ICMS, PeerImage} from '../../types/cms';
+import {
+  ContentTypeQuery,
+  DetailsData,
+  EngagementGallery,
+  GalleryData,
+  HeroData,
+  HeroImage,
+  ICMS,
+  PeerImage,
+} from '../../types/cms';
 import {
   IDetailsFields,
+  IEngagementPhotosFields,
   IHeroFields,
   IHomeCuratedGalleryFields,
   IPeerImageFields,
@@ -57,6 +67,14 @@ export class cms implements ICMS {
     });
 
     return data.items[0].fields.gallery;
+  };
+
+  public getEngagementData = async (): Promise<EngagementGallery> => {
+    const data: EntryCollection<IEngagementPhotosFields> = await this.client.getEntries({
+      content_type: ContentTypeQuery.ENGAGEMENT_PHOTOS,
+    });
+
+    return data.items[0].fields.engagementPhotos;
   };
 
   public getPeerContent = async (
