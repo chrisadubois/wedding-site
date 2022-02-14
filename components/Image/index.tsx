@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, {useState, ReactElement} from 'react';
 import ImageListItem from '@mui/material/ImageListItem';
-import {ImageListItemBar} from '@mui/material';
+import {ImageListItemBar, useMediaQuery, useTheme} from '@mui/material';
 import Image from 'next/image';
 import styles from '../../styles/modules/image-item.module.scss';
 import {convertImage, toBase64} from '../../common/util';
@@ -24,11 +24,13 @@ const ImageItem = ({
   onClickHandler?: (e: React.MouseEvent<HTMLElement>) => void;
 }): ReactElement => {
   const [hover, setHover] = useState(false);
+  const theme = useTheme();
+  const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'));
 
   return (
     <ImageListItem onClick={onClickHandler}>
       <Image
-        className={`${styles.image}`}
+        className={matchesMdUp ? `${styles.image}` : ''}
         priority
         src={item.img}
         alt={item.title}

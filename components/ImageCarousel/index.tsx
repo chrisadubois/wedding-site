@@ -2,6 +2,7 @@ import React, {useState, ReactElement, useEffect} from 'react';
 import {GalleryData} from '../../types/cms';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css'; // This only needs to be imported once in your app
+import {useMediaQuery, useTheme} from '@mui/material';
 
 const ImageCarousel = ({
   images,
@@ -15,6 +16,8 @@ const ImageCarousel = ({
   setOpen: (v: boolean) => void;
 }): ReactElement | null => {
   const [index, setIndex] = useState(initialIndex);
+  const theme = useTheme();
+  const matchesMdUp = useMediaQuery(theme.breakpoints.up('md'));
 
   useEffect(() => {
     setIndex(initialIndex);
@@ -37,7 +40,7 @@ const ImageCarousel = ({
     );
   };
 
-  return isOpen ? generateLightbox() : null;
+  return isOpen && matchesMdUp ? generateLightbox() : null;
 };
 
 export default ImageCarousel;
