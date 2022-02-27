@@ -80,7 +80,9 @@ export default NextAuth({
   // https://next-auth.js.org/configuration/callbacks
   callbacks: {
     // async signIn({ user, account, profile, email, credentials }) { return true },
-    // async redirect({ url, baseUrl }) { return baseUrl },
+    async redirect({url, baseUrl}) {
+      return url;
+    },
     // async session({ session, token, user }) { return session },
     async jwt({token}) {
       return token;

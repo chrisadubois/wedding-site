@@ -1,15 +1,6 @@
 import Image from 'next/image';
-import {
-  Container,
-  Grid,
-  Typography,
-  Button,
-  Link,
-  Tooltip,
-  ClickAwayListener,
-  unstable_createMuiStrictModeTheme,
-} from '@mui/material';
-import React, {useState} from 'react';
+import {Container, Grid, Typography, Button, Link, Tooltip, ClickAwayListener} from '@mui/material';
+import React, {useContext, useState} from 'react';
 import Maps from '../components/Maps';
 import StyledLink from '../components/StyledLink';
 import {cms} from '../common/cms';

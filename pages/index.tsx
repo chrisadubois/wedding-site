@@ -5,7 +5,10 @@ import Images from '../components/Images';
 import {cms} from '../common/cms';
 import {HomeProps} from '../types/ui';
 import {getSerializableEnvironment} from '../common/env';
-import {Typography} from '@mui/material';
+import {Stack, Typography} from '@mui/material';
+import {minimal} from '../common/routes';
+import StyledLink from '../components/StyledLink';
+import {useRouter} from 'next/router';
 
 export async function getStaticProps() {
   const environmentVariables = getSerializableEnvironment(process.env);
@@ -39,6 +42,7 @@ const renderer = ({days, hours, minutes, seconds, completed}: CountdownRenderPro
 };
 
 const Home = ({heroData, galleryData}: HomeProps) => {
+  const router = useRouter();
   return (
     <>
       {
@@ -51,6 +55,20 @@ const Home = ({heroData, galleryData}: HomeProps) => {
         />
       }
       <Images images={galleryData} />
+      <Stack direction="row" spacing={4}>
+        {minimal.map(({title, path, external}, i) => (
+          <StyledLink
+            key={`${title}${i}`}
+            href={path}
+            target={external ? '_blank' : '_self'}
+            rel="noopener noreferrer"
+            variant="button"
+            sx={{color: `white`, opacity: 0.7, textDecoration: router.pathname === path ? 'underline' : 'none'}}
+          >
+            {title}
+          </StyledLink>
+        ))}
+      </Stack>
     </>
   );
 };

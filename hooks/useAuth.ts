@@ -13,8 +13,8 @@ export const useAuth = () => {
       setAuthenticated(true);
     }
     if (!session && !loading && typeof window !== 'undefined') {
-      router.push('/api/auth/signin');
-      // signIn('credentials', {callbackUrl: window.location.origin})
+      // router.push('/api/auth/signin?redirectPath=details');
+      signIn(undefined);
     }
   }, [session, router, loading, status]);
 

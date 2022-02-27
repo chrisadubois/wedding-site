@@ -11,7 +11,7 @@ import {NavigationProps} from '../../types/ui';
 import {Divider, Stack} from '@mui/material';
 
 const NavigationDrawer: NextPage<NavigationProps> = ({navLinks}: NavigationProps) => {
-  const [state, setState] = useState({
+  const [local, setLocal] = useState({
     right: false,
   });
   const router = useRouter();
@@ -21,7 +21,11 @@ const NavigationDrawer: NextPage<NavigationProps> = ({navLinks}: NavigationProps
       return;
     }
 
-    setState({...state, [anchor]: open});
+    setLocal({...local, [anchor]: open});
+  };
+
+  const handleClick = (path: string) => {
+    router.push(path);
   };
 
   const list = (anchor: string) => (
@@ -41,7 +45,9 @@ const NavigationDrawer: NextPage<NavigationProps> = ({navLinks}: NavigationProps
                 ml: 5,
                 my: 2,
                 textTransform: `uppercase`,
+                cursor: 'pointer',
               }}
+              onClick={() => handleClick(path)}
             >
               <StyledLink
                 key={`${title}${i}`}
@@ -75,7 +81,7 @@ const NavigationDrawer: NextPage<NavigationProps> = ({navLinks}: NavigationProps
       </IconButton>
       <Drawer
         anchor="right"
-        open={state.right}
+        open={local.right}
         onClose={toggleDrawer('right', false)}
         sx={{
           '.MuiDrawer-paper': {
