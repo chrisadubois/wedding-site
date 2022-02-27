@@ -173,18 +173,6 @@ const RSVP: NextPage = () => {
         max={5}
         onChange={(event, value) => setParty(value as number)}
       />
-      <TextField
-        id="rsvp-comments"
-        label="Comments"
-        sx={{mb: 5}}
-        multiline
-        maxRows={4}
-        inputProps={{maxLength: 200}}
-        defaultValue=""
-        value={comments}
-        placeholder="We can't wait to see you on July 16, 2022!"
-        onChange={(event) => setComments(event.target.value)}
-      />
       <FormControl sx={{mb: 5}}>
         <FormLabel id="meal-options-group label">Meal Options</FormLabel>
         <RadioGroup
@@ -197,6 +185,18 @@ const RSVP: NextPage = () => {
           {generateRadioButtons()}
         </RadioGroup>
       </FormControl>
+      <TextField
+        id="rsvp-comments"
+        label="Comments"
+        sx={{mb: 5}}
+        multiline
+        maxRows={4}
+        inputProps={{maxLength: 200}}
+        defaultValue=""
+        value={comments}
+        placeholder="We can't wait to see you on July 16, 2022!"
+        onChange={(event) => setComments(event.target.value)}
+      />
       {generateButton()}
     </FormGroup>
   );
