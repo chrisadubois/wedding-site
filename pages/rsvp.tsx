@@ -150,7 +150,7 @@ const RSVP: NextPage = () => {
         placeholder="Sara Crauer"
         value={name}
         onChange={(event) => {
-          if (/[A-Za-z]/gi.test(event.target.value)) {
+          if (/[A-Za-z]/gi.test(event.target.value) || event.target.value === '') {
             setName(event.target.value);
           }
         }}
