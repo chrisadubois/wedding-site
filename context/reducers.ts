@@ -10,10 +10,10 @@ type ActionMap<M extends {[index: string]: any}> = {
 };
 
 export enum Types {
-  Add = 'ADD',
   ImageUploadStatus = 'IMAGE_UPLOAD_STATUS',
   ImageFileSource = 'IMAGE_FILE_SOURCE',
   ImageCanQuery = 'IMAGE_CAN_QUERY',
+  RsvpSubmitted = 'RSVP_SUBMIT',
 }
 
 export enum Status {
@@ -33,6 +33,12 @@ export type SocialState = {
   imageFileSrc: ImageFileSource;
 };
 
+export type Submitted = boolean;
+
+export type RsvpState = {
+  submitted: Submitted;
+};
+
 export type SocialPayload = {
   [Types.ImageFileSource]: {
     imgFileSrc: ImageFileSource;
@@ -45,9 +51,16 @@ export type SocialPayload = {
   };
 };
 
-export type SocialActions = ActionMap<SocialPayload>[keyof ActionMap<SocialPayload>];
+export type RsvpPayload = {
+  [Types.RsvpSubmitted]: {
+    submitted: Submitted;
+  };
+};
 
-export const socialReducer = (state: SocialState, action: SocialActions | BaseActions): SocialState => {
+export type SocialActions = ActionMap<SocialPayload>[keyof ActionMap<SocialPayload>];
+export type RsvpActions = ActionMap<RsvpPayload>[keyof ActionMap<RsvpPayload>];
+
+export const socialReducer = (state: SocialState, action: SocialActions): SocialState => {
   switch (action.type) {
   case Types.ImageFileSource:
     return {...state, imageFileSrc: {src: action.payload.imgFileSrc.src, file: action.payload.imgFileSrc.file}};
@@ -60,16 +73,10 @@ export const socialReducer = (state: SocialState, action: SocialActions | BaseAc
   }
 };
 
-export type BasePayload = {
-  [Types.Add]: undefined;
-};
-
-export type BaseActions = ActionMap<BasePayload>[keyof ActionMap<BasePayload>];
-
-export const baseReducer = (state: number, action: SocialActions | BaseActions): number => {
+export const rsvpReducer = (state: RsvpState, action: RsvpActions): RsvpState => {
   switch (action.type) {
-  case Types.Add:
-    return state + 1;
+  case Types.RsvpSubmitted:
+    return {...state, submitted: action.payload.submitted};
   default:
     return state;
   }

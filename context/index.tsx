@@ -1,12 +1,12 @@
 import React, {createContext, useReducer, Dispatch} from 'react';
-import {socialReducer, baseReducer, SocialActions, BaseActions, SocialState} from './reducers';
+import {socialReducer, SocialActions, SocialState, RsvpState, RsvpActions, rsvpReducer} from './reducers';
 
-type InitialStateType = {
+export type InitialStateType = {
   social: SocialState;
-  base: number;
+  rsvp: RsvpState;
 };
 
-const initialState = {
+export const initialState = {
   social: {
     imageFileSrc: {
       src: null,
@@ -15,20 +15,22 @@ const initialState = {
     imageUploadStatus: null,
     imageCanQuery: true,
   },
-  base: 0,
+  rsvp: {
+    submitted: false,
+  },
 };
 
 export const AppContext = createContext<{
   state: InitialStateType;
-  dispatch: Dispatch<SocialActions | BaseActions>;
+  dispatch: Dispatch<SocialActions | RsvpActions>;
 }>({
   state: initialState,
   dispatch: () => null,
 });
 
-const mainReducer = ({social, base}: InitialStateType, action: SocialActions | BaseActions) => ({
-  social: socialReducer(social, action),
-  base: baseReducer(base, action),
+const mainReducer = ({social, rsvp}: InitialStateType, action: SocialActions | RsvpActions) => ({
+  social: socialReducer(social, action as SocialActions),
+  rsvp: rsvpReducer(rsvp, action as RsvpActions),
 });
 
 export const AppProvider: React.FC = ({children}) => {
